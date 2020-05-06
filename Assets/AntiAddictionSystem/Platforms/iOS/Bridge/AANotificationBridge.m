@@ -15,6 +15,22 @@
     return self;
 }
 
+// 获取当前用户登录状态
+// 0: 未知
+// 1: 游客
+// 2: 正式用户
+- (int)getUserLoginStatus {
+    return [self.notification getUserLoginStatus];
+}
+
+// 获取用户的认证身份
+// 0: 未知
+// 1：已成年
+// 2: 未成年
+- (int)getUserAuthenticationIdentity {
+    return [self.notification getUserAuthenticationIdentity];
+}
+
 #pragma mark - notification delegate
 // 隐私弹框已经展示
 - (void)privacyPolicyViewControllerHasBeenShown {

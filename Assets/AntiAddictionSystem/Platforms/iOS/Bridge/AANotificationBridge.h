@@ -33,4 +33,16 @@
 // 用户在提示界面点击确定
 @property(nonatomic, assign) AAUserClickConfirmButtonCallback userClickConfirmButtonCallback;
 
+// 获取当前用户登录状态
+// 0: 未知
+// 1: 游客
+// 2: 正式用户
+- (int)getUserLoginStatus;
+
+// 获取用户的认证身份
+// 0: 未知
+// 1：已成年
+// 2: 未成年
+- (int)getUserAuthenticationIdentity;
+
 @end
