@@ -22,6 +22,8 @@
 @property(nonatomic, assign) AALoginFailCallback loginFailCallback;
 // 实名认证界面已经展示
 @property(nonatomic, assign) AAUserAuthVcHasBeenShownCallback userAuthVcHasBeenShownCallback;
+// 实名认证成功
+@property(nonatomic, assign) AAUserAuthSuccessCallback userAuthSuccessCallback;
 // warning vc已展示
 @property(nonatomic, assign) AAWarningVcHasBeenShownCallback warningVcHasBeenShownCallback;
 // 用户在提示界面点击登录
