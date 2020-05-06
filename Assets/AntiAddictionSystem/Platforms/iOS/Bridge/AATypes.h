@@ -5,29 +5,29 @@ typedef const void *AATypeNotificationClientRef;
 typedef const void *AATypenotificationRef;
 #pragma mark - AANotification callback
 // 隐私弹框已经展示
-typedef void (*privacyPolicyViewControllerHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AAPrivacyPolicyViewControllerHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户同意隐私政策
-typedef void (*userAgreesToPrivacyPolicyCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AAUserAgreesToPrivacyPolicyCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 开始展示用户登录界面
-typedef void (*loginViewControllerHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AALoginViewControllerHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 登录界面消失
-typedef void (*loginViewControllerHasBeenDismissedCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AALoginViewControllerHasBeenDismissedCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 登录成功
-typedef void (*loginSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient, const char *zplayKey);
+typedef void (*AALoginSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient, const char *zplayKey);
 // 登录失败
-typedef void (*loginFailCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AALoginFailCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 实名认证界面已经展示
-typedef void (*userAuthVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AAUserAuthVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 实名认证成功
-typedef void (*userAuthSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient, const char *remainTime);
+typedef void (*AAUserAuthSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient, const char *remainTime);
 // warning vc已展示
-typedef void (*warningVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AAWarningVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击登录
-typedef void (*userClickLoginButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AAUserClickLoginButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击退出游戏
-typedef void (*userClickLoginOutButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AAUserClickLoginOutButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击确定
-typedef void (*userClickConfirmButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
+typedef void (*AAUserClickConfirmButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
 
 
 #pragma mark - AALoginViewController
