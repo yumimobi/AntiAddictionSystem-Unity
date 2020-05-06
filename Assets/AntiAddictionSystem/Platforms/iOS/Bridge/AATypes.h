@@ -2,7 +2,7 @@ typedef const void *AATypeRef;
 
 #pragma mark - AANotification
 typedef const void *AATypeNotificationClientRef;
-typedef const void *AATypenotificationRef;
+typedef const void *AATypeNotificationRef;
 #pragma mark - AANotification callback
 // 隐私弹框已经展示
 typedef void (*AAPrivacyPolicyViewControllerHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
