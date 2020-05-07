@@ -154,9 +154,8 @@
 }
 // 实名认证成功
 - (void)userAuthSuccessWithRemainTime:(NSNumber *)remainTime {
-    NSString *timeStr = [[NSString alloc] initWithFormat:@"%@", remainTime];
     if(self.userAuthSuccessCallback) {
-        self.userAuthSuccessCallback(self.notificationClient, [timeStr cStringUsingEncoding:NSUTF8StringEncoding]);
+        self.userAuthSuccessCallback(self.notificationClient);
     }
 }
 // warning vc已展示
