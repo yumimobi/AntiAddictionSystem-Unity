@@ -1,0 +1,8 @@
+Assets/AntiAddictionServicesResolver/Editor/Google.IOSResolver_v1.2.119.0.dll
+Assets/AntiAddictionServicesResolver/Editor/Google.IOSResolver_v1.2.119.0.dll.mdb
+Assets/AntiAddictionServicesResolver/Editor/Google.JarResolver_v1.2.119.0.dll
+Assets/AntiAddictionServicesResolver/Editor/Google.JarResolver_v1.2.119.0.dll.mdb
+Assets/AntiAddictionServicesResolver/Editor/Google.VersionHandler.dll
+Assets/AntiAddictionServicesResolver/Editor/Google.VersionHandler.dll.mdb
+Assets/AntiAddictionServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.119.0.dll
+Assets/AntiAddictionServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.119.0.dll.mdb
