@@ -20,6 +20,8 @@
 @property(nonatomic, assign) AALoginSuccessCallback loginSuccessCallback;
 // 登录失败
 @property(nonatomic, assign) AALoginFailCallback loginFailCallback;
+// 注销登录
+@property(nonatomic, assign) AALoginOutSuccessfullCallback loginOutSuccessfullCallback;
 // 实名认证界面已经展示
 @property(nonatomic, assign) AAUserAuthVcHasBeenShownCallback userAuthVcHasBeenShownCallback;
 // 实名认证成功
@@ -32,6 +34,10 @@
 @property(nonatomic, assign) AAUserClickLoginOutButtonCallback userClickLoginOutButtonCallback;
 // 用户在提示界面点击确定
 @property(nonatomic, assign) AAUserClickConfirmButtonCallback userClickConfirmButtonCallback;
+// 不可支付
+@property(nonatomic, assign) AAPaymentIsRestrictedCallback paymentIsRestrictedCallback;
+// 可以支付
+@property(nonatomic, assign) AAPaymentUnlimitedCallback paymentUnlimitedCallback;
 
 // 获取当前用户登录状态
 // 0: 未知

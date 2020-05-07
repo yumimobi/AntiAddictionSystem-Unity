@@ -140,6 +140,12 @@
         self.loginFailCallback(self.notificationClient);
     }
 }
+// 注销登录
+- (void)loginOutSuccessfull {
+    if(self.loginOutSuccessfullCallback) {
+        self.loginOutSuccessfullCallback(self.notificationClient);
+    }
+}
 // 实名认证界面已经展示
 - (void)userAuthVcHasBeenShown {
     if(self.userAuthVcHasBeenShownCallback) {
@@ -175,6 +181,18 @@
 - (void)userClickConfirmButton {
     if(self.userClickConfirmButtonCallback) {
         self.userClickConfirmButtonCallback(self.notificationClient);
+    }
+}
+// 不可支付
+- (void)paymentIsRestricted {
+    if(self.paymentIsRestrictedCallback) {
+        self.paymentIsRestrictedCallback(self.notificationClient);
+    }
+}
+// 可以支付
+- (void)paymentUnlimited {
+    if(self.paymentUnlimitedCallback) {
+        self.paymentUnlimitedCallback(self.notificationClient);
     }
 }
 
