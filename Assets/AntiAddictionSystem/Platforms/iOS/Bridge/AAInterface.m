@@ -2,6 +2,7 @@
 #import "AAObjectCache.h"
 #import "AANotificationBridge.h"
 
+static NSString *AAStringFromUTF8String(const char *bytes) { return bytes ? @(bytes) : nil; }
 #pragma mark - AANotification method
 
 AATypeNotificationRef AACreateNotification(AATypeNotificationClientRef *notificationClient) {
@@ -88,17 +89,17 @@ void showUserAuthenticationViewController(AATypeNotificationRef notification) {
 
 void loginWithUserNameAndPassword(AATypeNotificationRef notification, const char *userName, const char *password) {
     AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
-    [internalNotification loginWithUserName:userName password:password];
+    [internalNotification loginWithUserName:AAStringFromUTF8String(userName) password:AAStringFromUTF8String(password)];
 }
 
 void loginWithThirdPartyPlatform(AATypeNotificationRef notification, const char *token, const char *otherID, const char *platformName) {
     AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
-    [internalNotification loginWithPlatformToken:token otherID:otherID platformName:platformName];
+    [internalNotification loginWithPlatformToken:AAStringFromUTF8String(token) otherID:AAStringFromUTF8String(otherID) platformName:AAStringFromUTF8String(platformName)];
 }
 
 void loginWithZplayID(AATypeNotificationRef notification, const char *zplayID) {
     AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
-    [internalNotification loginWithZplayID:zplayID];
+    [internalNotification loginWithZplayID:AAStringFromUTF8String(zplayID)];
 }
 
 void loginOut(AATypeNotificationRef notification) {
