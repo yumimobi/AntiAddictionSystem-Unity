@@ -36,7 +36,13 @@ void AASetNotificationCallbacks(
         // 用户在提示界面点击退出游戏
         AAUserClickLoginOutButtonCallback userClickLoginOutButtonCallback,
         // 用户在提示界面点击确定
-        AAUserClickConfirmButtonCallback userClickConfirmButtonCallback) {
+        AAUserClickConfirmButtonCallback userClickConfirmButtonCallback,
+        // 注销用户
+        AALoginOutSuccessfullCallback loginOutSuccessfullCallback,
+        // 不可支付
+        AAPaymentIsRestrictedCallback paymentIsRestrictedCallback,
+        // 可以支付
+        AAPaymentUnlimitedCallback paymentUnlimitedCallback) {
     AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
     internalNotification.privacyPolicyViewControllerHasBeenShownCallback = privacyPolicyViewControllerHasBeenShownCallback;
     internalNotification.userAgreesToPrivacyPolicyCallback = userAgreesToPrivacyPolicyCallback;
@@ -50,6 +56,9 @@ void AASetNotificationCallbacks(
     internalNotification.userClickLoginButtonCallback = userClickLoginButtonCallback;
     internalNotification.userClickLoginOutButtonCallback = userClickLoginOutButtonCallback;
     internalNotification.userClickConfirmButtonCallback = userClickConfirmButtonCallback;
+    internalNotification.loginOutSuccessfullCallback = loginOutSuccessfullCallback;
+    internalNotification.paymentIsRestrictedCallback = paymentIsRestrictedCallback;
+    internalNotification.paymentIsRestrictedCallback = paymentIsRestrictedCallback;
 }
 
 int getUserLoginStatus(AATypeNotificationRef notification) {    
