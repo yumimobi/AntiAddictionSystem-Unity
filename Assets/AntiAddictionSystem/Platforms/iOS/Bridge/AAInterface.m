@@ -61,3 +61,11 @@ int getUserAuthenticationIdentity(AATypeNotificationRef notification) {
     AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
     return [internalNotification getUserAuthenticationIdentity];
 }
+
+#pragma mark - Other methods
+void AARelease(AATypeRef ref) {
+    if (ref) {
+        AAObjectCache *cache = [AAObjectCache sharedInstance];
+        [cache.references removeObjectForKey:[(__bridge NSObject *)ref aa_referenceKey]];
+    }
+}
