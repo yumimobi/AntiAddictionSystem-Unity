@@ -238,25 +238,29 @@ public class AntiAddictionDemoScript : MonoBehaviour
         }
     }
 
-    //游戏退到后台时调用
-    public void GameOnPause()
+    
+
+    private void OnApplicationPause(bool pause)
     {
-        statusText.text = "GameOnPause";
-        if (antiAddictionSDK != null)
+        if (pause)
         {
-            antiAddictionSDK.GameOnPause();
+            //游戏退到后台时调用
+            statusText.text = "GameOnPause";
+            if (antiAddictionSDK != null)
+            {
+                antiAddictionSDK.GameOnPause();
+            }
+        }
+        else {
+            //游戏恢复前台时调用
+            statusText.text = "GameOnResume";
+            if (antiAddictionSDK != null)
+            {
+                antiAddictionSDK.GameOnResume();
+            }
         }
     }
 
-    //游戏恢复到前台时调用
-    public void GameOnResume()
-    {
-        statusText.text = "GameOnResume";
-        if (antiAddictionSDK != null)
-        {
-            antiAddictionSDK.GameOnResume();
-        }
-    }
 
 
     #region AntiAddiction callback handlers
