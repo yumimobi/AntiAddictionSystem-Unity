@@ -85,17 +85,17 @@ namespace AntiAddictionSystem.iOS
             );
         }
 
-        private IntPtr notificationPtr
+        private IntPtr NotificationPtr
         {
             get
             {
-                return notificationPtr;
+                return NotificationPtr;
             }
 
             set
             {
-                Externs.AARelease(notificationPtr);
-                notificationPtr = value;
+                Externs.AARelease(NotificationPtr);
+                NotificationPtr = value;
             }
         }
 
@@ -145,14 +145,22 @@ namespace AntiAddictionSystem.iOS
             Externs.loginOut(notificationClientPtr);
         }
 
-        public void checkNumberLimitBeforePayment(int payNumber)
+        public void CheckNumberLimitBeforePayment(int payNumber)
         {
             Externs.checkNumberLimitBeforePayment(notificationClientPtr, payNumber);
         }
 
-        public void reportNumberAfterPayment(int payNumber)
+        public void ReportNumberAfterPayment(int payNumber)
         {
             Externs.reportNumberAfterPayment(notificationClientPtr, payNumber);
+        }
+
+        public void GameOnPause()
+        {
+        }
+
+        public void GameOnResume()
+        {
         }
 #endregion
 
@@ -160,7 +168,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAPrivacyPolicyViewControllerHasBeenShownCallback))]
         private static void privacyPolicyViewControllerHasBeenShownCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnPrivacyPolicyShown != null)
             {
                 client.OnPrivacyPolicyShown(client, EventArgs.Empty);
@@ -170,7 +178,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAUserAgreesToPrivacyPolicyCallback))]
         private static void userAgreesToPrivacyPolicyCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnUserAgreesToPrivacyPolicy != null)
             {
                 client.OnUserAgreesToPrivacyPolicy(client, EventArgs.Empty);
@@ -180,7 +188,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AALoginViewControllerHasBeenShownCallback))]
         private static void loginViewControllerHasBeenShownCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnLoginHasBeenShown != null)
             {
                 client.OnLoginHasBeenShown(client, EventArgs.Empty);
@@ -190,7 +198,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AALoginViewControllerHasBeenDismissedCallback))]
         private static void loginViewControllerHasBeenDismissedCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnLoginHasBeenDismissed != null)
             {
                 client.OnLoginHasBeenDismissed(client, EventArgs.Empty);
@@ -200,7 +208,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AALoginSuccessCallback))]
         private static void loginSuccessCallback(IntPtr notificationClient, string zplayID)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnLoginSuccess != null)
             {
                 LoginSuccessEventArgs args = new LoginSuccessEventArgs()
@@ -214,7 +222,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AALoginFailCallback))]
         private static void loginFailCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnLoginFail != null)
             {
                 client.OnLoginFail(client, EventArgs.Empty);
@@ -224,7 +232,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAUserAuthVcHasBeenShownCallback))]
         private static void userAuthVcHasBeenShownCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnUserAuthVcHasBeenShown != null)
             {
                 client.OnUserAuthVcHasBeenShown(client, EventArgs.Empty);
@@ -234,7 +242,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAUserAuthSuccessCallback))]
         private static void userAuthSuccessCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnUserAuthSuccess != null)
             {
                 client.OnUserAuthSuccess(client, EventArgs.Empty);
@@ -244,7 +252,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAWarningVcHasBeenShownCallback))]
         private static void warningVcHasBeenShownCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnWarningHasBeenShown != null)
             {
                 client.OnWarningHasBeenShown(client, EventArgs.Empty);
@@ -254,7 +262,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAUserClickLoginButtonCallback))]
         private static void userClickLoginButtonCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnUserClickLoginButton != null)
             {
                 client.OnUserClickLoginButton(client, EventArgs.Empty);
@@ -264,7 +272,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAUserClickLoginOutButtonCallback))]
         private static void userClickLoginOutButtonCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnUserClickQuitButton != null)
             {
                 client.OnUserClickQuitButton(client, EventArgs.Empty);
@@ -274,7 +282,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAUserClickConfirmButtonCallback))]
         private static void userClickConfirmButtonCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnUserClickConfirmButton != null)
             {
                 client.OnUserClickConfirmButton(client, EventArgs.Empty);
@@ -284,7 +292,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AALoginOutSuccessfullCallback))]
         private static void loginOutSuccessfullCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnLogoutCallback != null)
             {
                 client.OnLogoutCallback(client, EventArgs.Empty);
@@ -294,7 +302,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAPaymentIsRestrictedCallback))]
         private static void paymentIsRestrictedCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnCanPay != null)
             {
                 client.OnCanPay(client, EventArgs.Empty);
@@ -304,7 +312,7 @@ namespace AntiAddictionSystem.iOS
         [MonoPInvokeCallback(typeof(AAPaymentUnlimitedCallback))]
         private static void paymentUnlimitedCallback(IntPtr notificationClient)
         {
-            notificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
             if (client.OnProhibitPay != null)
             {
                 client.OnProhibitPay(client, EventArgs.Empty);
