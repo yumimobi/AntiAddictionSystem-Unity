@@ -28,24 +28,3 @@ typedef void (*AAUserClickLoginButtonCallback)(AATypeNotificationClientRef *aaNo
 typedef void (*AAUserClickLoginOutButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击确定
 typedef void (*AAUserClickConfirmButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
-
-
-#pragma mark - AALoginViewController
-typedef const void *AATypeLoginVcClientRef;
-typedef const void *AATypeLoginVcRef;
-
-#pragma mark - AALogin
-typedef const void *AATypeLoginClientRef;
-typedef const void *AATypeLoginRef;
-
-#pragma mark - AAPayNumberReport
-typedef const void *AATypePayNumberReportClientRef;
-typedef const void *AATypePayNumberReportRef;
-
-#pragma mark - AAPrivacyPolicyViewController
-typedef const void *AATypePrivacyPolicyVcClientRef;
-typedef const void *AATypePrivacyPolicyVcRef;
-
-#pragma mark - AAUserAuthenticationViewController
-typedef const void *AATypeAuthVcClientRef;
-typedef const void *AATypeAuthVcRef;
