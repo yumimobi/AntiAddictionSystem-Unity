@@ -32,7 +32,7 @@ namespace AntiAddictionSystem.iOS
             NotificationClient.AAUserClickConfirmButtonCallback userClickConfirmButtonCallback,
             NotificationClient.AALoginOutSuccessfullCallback loginOutSuccessfullCallback,
             NotificationClient.AAPaymentIsRestrictedCallback paymentIsRestrictedCallback,
-            NotificationClient.AAPaymentUnlimitedCallback paymentUnlimitedCallback,
+            NotificationClient.AAPaymentUnlimitedCallback paymentUnlimitedCallback
         );
         
         [DllImport("__Internal")]

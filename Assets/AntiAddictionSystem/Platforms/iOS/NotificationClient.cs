@@ -19,7 +19,7 @@ namespace AntiAddictionSystem.iOS
         internal delegate void AAUserAgreesToPrivacyPolicyCallback(IntPtr notificationClient);
         internal delegate void AALoginViewControllerHasBeenShownCallback(IntPtr notificationClient);
         internal delegate void AALoginViewControllerHasBeenDismissedCallback(IntPtr notificationClient);
-        internal delegate void AALoginSuccessCallback(IntPtr notificationClient， string zplayID);
+        internal delegate void AALoginSuccessCallback(IntPtr notificationClient, string zplayID);
         internal delegate void AALoginFailCallback(IntPtr notificationClient);
         internal delegate void AAUserAuthVcHasBeenShownCallback(IntPtr notificationClient);
         internal delegate void AAUserAuthSuccessCallback(IntPtr notificationClient);
@@ -132,7 +132,7 @@ namespace AntiAddictionSystem.iOS
 
         public void LoginWithPlatformToken(String token, String otherID,String platformName)
         {
-            Externs.loginWithThirdPartyPlatform(notificationClientPtr， token, otherID, platformName);
+            Externs.loginWithThirdPartyPlatform(notificationClientPtr, token, otherID, platformName);
         }
 
         public void LoginWithZplayID(String zplayID) 
@@ -147,7 +147,7 @@ namespace AntiAddictionSystem.iOS
 
         public void checkNumberLimitBeforePayment(int payNumber)
         {
-            Externs.checkNumberLimitBeforePayment(notificationClientPtr， payNumber);
+            Externs.checkNumberLimitBeforePayment(notificationClientPtr, payNumber);
         }
 
         public void reportNumberAfterPayment(int payNumber)
