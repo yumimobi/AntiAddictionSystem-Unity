@@ -1,6 +1,16 @@
 #import "AANotificationBridge.h"
+#import <AntiAddictionSystem/AAPrivacyPolicyViewController.h>
+#import <AntiAddictionSystem/AALoginViewController.h>
+#import <AntiAddictionSystem/AALogin.h>
+#import <AntiAddictionSystem/AAUserAuthenticationViewController.h>
+#import <AntiAddictionSystem/AAPayNumberReport.h>
 
 @interface AANotificationBridge ()<AANotificationDelegate>
+@property (nonatomic) AAPrivacyPolicyViewController *privacyPolicyVc;
+@property (nonatomic) AALoginViewController *loginVc;
+@property (nonatomic) AALogin *loginManager;
+@property (nonatomic) AAUserAuthenticationViewController *authVc;
+@property (nonatomic) AAPayNumberReport *payReport;
 
 @end
 
@@ -20,7 +30,8 @@
 // 1: 游客
 // 2: 正式用户
 - (int)getUserLoginStatus {
-    return [self.notification getUserLoginStatus];
+    int loginStatus = [NSNumber numberWithBool:[self.notification getUserLoginStatus]].intValue;
+    return loginStatus;
 }
 
 // 获取用户的认证身份
@@ -28,7 +39,68 @@
 // 1：已成年
 // 2: 未成年
 - (int)getUserAuthenticationIdentity {
-    return [self.notification getUserAuthenticationIdentity];
+    int userAuthStatus = [NSNumber numberWithBool:[self.notification getUserAuthenticationIdentity]].intValue;
+    return userAuthStatus;
+}
+
+// 展示隐私政策弹框
+- (void)showPrivacyPolicyView {
+    [self.privacyPolicyVc showPrivacyPolicyViewWithRootViewController:UnityGetGLViewController()];
+}
+
+// 展示登录界面
+- (void)showLoginViewController {
+    [self.loginVc showLoginViewControllerWith:UnityGetGLViewController()];
+}
+
+// 展示实名认证界面
+// 登录后先检测实名认证状态，如已经实名认证，则不展示此界面
+- (void)showUserAuthenticationViewController {
+    [self.authVc showUserAuthenticationViewControllerWith:UnityGetGLViewController()];
+}
+
+// 使用帐号密码注册
+// username: 用户帐号
+// password: 用户密码
+- (void)loginWithUserName:(NSString *)username
+                 password:(NSString *)password {
+    [self.loginManager loginWithUserName:username password:password success:^(NSString * _Nonnull zplayID) {
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+// 使用第三方平台登录SDK
+// token: 如使用第三方登录（如微信），请使用三方登录SDK返回的唯一ID
+// otherID: 如果三方登录平台d返回除token之外的ID，请将此ID赋值给此参数
+// platformName : 三方平台名称（请联系产品获取）
+- (void)loginWithPlatformToken:(NSString *)token
+                       otherID:(NSString *)otherID
+                  platformName:(NSString *)platformName {
+    [self.loginManager loginWithPlatformToken:token otherID:otherID platformName:platformName];
+}
+
+// 使用Zplay登录SDK
+- (void)loginWithZplayID:(NSString *)zplayID {
+    [self.loginManager loginWithZplayID:zplayID];
+}
+
+// 注销用户
+- (void)loginOut {
+    [self.loginManager loginOut];
+}
+
+// 支付前检查用户是否被限额（成年人不受限制）
+// paynumber: 付费金额，单位分
+- (void)checkNumberLimitBeforePayment:(NSUInteger)payNumber {
+    [self.payReport checkNumberLimitBeforePayment:payNumber];
+}
+
+// 支付成功后上报玩家支付金额
+// payNumber: 付费金额，单位分
+- (void)reportNumberAfterPayment:(NSUInteger)payNumber {
+    [self.payReport reportNumberAfterPayment:payNumber];
 }
 
 #pragma mark - notification delegate
@@ -104,6 +176,42 @@
     if(self.userClickConfirmButtonCallback) {
         self.userClickConfirmButtonCallback(self.notificationClient);
     }
+}
+
+#pragma mark - lazy load
+- (AAPrivacyPolicyViewController *)privacyPolicyVc {
+    if (_privacyPolicyVc) {
+        _privacyPolicyVc = [[AAPrivacyPolicyViewController alloc] init];
+    }
+    return _privacyPolicyVc;
+}
+
+- (AALoginViewController *)loginVc {
+    if (_loginVc) {
+        _loginVc = [[AALoginViewController alloc] init];
+    }
+    return _loginVc;
+}
+
+- (AALogin *)loginManager {
+    if (_loginManager) {
+        _loginManager = [[AALogin alloc] init];
+    }
+    return _loginManager;
+}
+
+- (AAUserAuthenticationViewController *)authVc {
+    if (_authVc) {
+        _authVc = [[AAUserAuthenticationViewController alloc] init];
+    }
+    return _authVc;
+}
+
+- (AAPayNumberReport *)payReport {
+    if (_payReport) {
+        _payReport = [[AAPayNumberReport alloc] init];
+    }
+    return _payReport;
 }
 
 @end
