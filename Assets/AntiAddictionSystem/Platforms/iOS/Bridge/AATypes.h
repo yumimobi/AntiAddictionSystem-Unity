@@ -16,6 +16,8 @@ typedef void (*AALoginViewControllerHasBeenDismissedCallback)(AATypeNotification
 typedef void (*AALoginSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient, const char *zplayKey);
 // 登录失败
 typedef void (*AALoginFailCallback)(AATypeNotificationClientRef *aaNotificationClient);
+// 注销登录
+typedef void (*AALoginOutSuccessfullCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 实名认证界面已经展示
 typedef void (*AAUserAuthVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 实名认证成功
@@ -28,3 +30,7 @@ typedef void (*AAUserClickLoginButtonCallback)(AATypeNotificationClientRef *aaNo
 typedef void (*AAUserClickLoginOutButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击确定
 typedef void (*AAUserClickConfirmButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
+// 不可支付
+typedef void (*AAPaymentIsRestrictedCallback)(AATypeNotificationClientRef *aaNotificationClient);
+// 可以支付
+typedef void (*AAPaymentUnlimitedCallback)(AATypeNotificationClientRef *aaNotificationClient);
