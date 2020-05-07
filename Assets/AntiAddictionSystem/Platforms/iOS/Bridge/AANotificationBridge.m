@@ -93,13 +93,13 @@
 
 // 支付前检查用户是否被限额（成年人不受限制）
 // paynumber: 付费金额，单位分
-- (void)checkNumberLimitBeforePayment:(NSUInteger)payNumber {
+- (void)checkNumberLimitBeforePayment:(int)payNumber {
     [self.payReport checkNumberLimitBeforePayment:payNumber];
 }
 
 // 支付成功后上报玩家支付金额
 // payNumber: 付费金额，单位分
-- (void)reportNumberAfterPayment:(NSUInteger)payNumber {
+- (void)reportNumberAfterPayment:(int)payNumber {
     [self.payReport reportNumberAfterPayment:payNumber];
 }
 
@@ -154,9 +154,8 @@
 }
 // 实名认证成功
 - (void)userAuthSuccessWithRemainTime:(NSNumber *)remainTime {
-    NSString *timeStr = [[NSString alloc] initWithFormat:@"%@", remainTime];
     if(self.userAuthSuccessCallback) {
-        self.userAuthSuccessCallback(self.notificationClient, [timeStr cStringUsingEncoding:NSUTF8StringEncoding]);
+        self.userAuthSuccessCallback(self.notificationClient);
     }
 }
 // warning vc已展示
@@ -198,35 +197,35 @@
 
 #pragma mark - lazy load
 - (AAPrivacyPolicyViewController *)privacyPolicyVc {
-    if (_privacyPolicyVc) {
+    if (!_privacyPolicyVc) {
         _privacyPolicyVc = [[AAPrivacyPolicyViewController alloc] init];
     }
     return _privacyPolicyVc;
 }
 
 - (AALoginViewController *)loginVc {
-    if (_loginVc) {
+    if (!_loginVc) {
         _loginVc = [[AALoginViewController alloc] init];
     }
     return _loginVc;
 }
 
 - (AALogin *)loginManager {
-    if (_loginManager) {
+    if (!_loginManager) {
         _loginManager = [[AALogin alloc] init];
     }
     return _loginManager;
 }
 
 - (AAUserAuthenticationViewController *)authVc {
-    if (_authVc) {
+    if (!_authVc) {
         _authVc = [[AAUserAuthenticationViewController alloc] init];
     }
     return _authVc;
 }
 
 - (AAPayNumberReport *)payReport {
-    if (_payReport) {
+    if (!_payReport) {
         _payReport = [[AAPayNumberReport alloc] init];
     }
     return _payReport;

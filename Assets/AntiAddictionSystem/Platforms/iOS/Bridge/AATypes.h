@@ -21,7 +21,7 @@ typedef void (*AALoginOutSuccessfullCallback)(AATypeNotificationClientRef *aaNot
 // 实名认证界面已经展示
 typedef void (*AAUserAuthVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 实名认证成功
-typedef void (*AAUserAuthSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient, const char *remainTime);
+typedef void (*AAUserAuthSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // warning vc已展示
 typedef void (*AAWarningVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击登录

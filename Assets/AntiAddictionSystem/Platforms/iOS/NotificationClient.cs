@@ -102,57 +102,57 @@ namespace AntiAddictionSystem.iOS
 #region IAntiAddictionClient implement 
         public int GetUserLoginStatus()
         {
-            return Externs.getUserLoginStatus(notificationClientPtr);
+            return Externs.getUserLoginStatus(notificationPtr);
         }
         
         public int GetUserAuthenticationIdentity()
         {
-            return Externs.getUserAuthenticationIdentity(notificationClientPtr);
+            return Externs.getUserAuthenticationIdentity(notificationPtr);
         }
 
         public void ShowPrivacyPolicyView()
         {
-            Externs.showPrivacyPolicyView(notificationClientPtr);
+            Externs.showPrivacyPolicyView(notificationPtr);
         }
 
         public void ShowLoginViewController()
         {
-            Externs.showLoginViewController(notificationClientPtr);
+            Externs.showLoginViewController(notificationPtr);
         }
 
         public void ShowUserAuthenticationViewController()
         {
-            Externs.showUserAuthenticationViewController(notificationClientPtr);
+            Externs.showUserAuthenticationViewController(notificationPtr);
         }
 
         public void LoginWithUserName(String username, String password)
         {
-            Externs.loginWithUserNameAndPassword(notificationClientPtr, username, password);
+            Externs.loginWithUserNameAndPassword(notificationPtr, username, password);
         }
 
         public void LoginWithPlatformToken(String token, String otherID,String platformName)
         {
-            Externs.loginWithThirdPartyPlatform(notificationClientPtr, token, otherID, platformName);
+            Externs.loginWithThirdPartyPlatform(notificationPtr, token, otherID, platformName);
         }
 
         public void LoginWithZplayID(String zplayID) 
         {
-            Externs.loginWithZplayID(notificationClientPtr, zplayID);
+            Externs.loginWithZplayID(notificationPtr, zplayID);
         }
         
         public void LoginOut()
         {
-            Externs.loginOut(notificationClientPtr);
+            Externs.loginOut(notificationPtr);
         }
 
         public void CheckNumberLimitBeforePayment(int payNumber)
         {
-            Externs.checkNumberLimitBeforePayment(notificationClientPtr, payNumber);
+            Externs.checkNumberLimitBeforePayment(notificationPtr, payNumber);
         }
 
         public void ReportNumberAfterPayment(int payNumber)
         {
-            Externs.reportNumberAfterPayment(notificationClientPtr, payNumber);
+            Externs.reportNumberAfterPayment(notificationPtr, payNumber);
         }
 
         public void GameOnPause()
