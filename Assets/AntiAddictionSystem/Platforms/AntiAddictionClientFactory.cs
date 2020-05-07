@@ -12,7 +12,7 @@ namespace AntiAddictionSystem
 #if UNITY_ANDROID
             return new Android.AntiAddictionClient();
 #elif UNITY_IPHONE
-            return new iOS.WindowAdClient(adAppId, adUnitId, gameObject);
+            return new iOS.NotificationClient();
 #else
             return new DummyClient();
 #endif
