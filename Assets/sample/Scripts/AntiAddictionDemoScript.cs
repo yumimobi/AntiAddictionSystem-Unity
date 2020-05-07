@@ -275,8 +275,10 @@ public class AntiAddictionDemoScript : MonoBehaviour
 
     public void HandleLoginSuccess(object sender, LoginSuccessEventArgs args)
     {
-        showZplayIdText.text = "HandleLoginSuccess: " + args.Message;
-        print("AntiAddiction---HandleLoginSuccess: " + args.Message);
+        String zplayId = args.Message;
+        print("AntiAddiction---HandleLoginSuccess: " + zplayId);
+        showZplayIdText.text = "ZplayId : " + zplayId;
+        statusText.text = "HandleLoginSuccess";
     }
 
     public void HandleLoginHasBeenShown(object sender, EventArgs args)
