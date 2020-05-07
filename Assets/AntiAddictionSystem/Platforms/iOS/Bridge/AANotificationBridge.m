@@ -93,13 +93,13 @@
 
 // 支付前检查用户是否被限额（成年人不受限制）
 // paynumber: 付费金额，单位分
-- (void)checkNumberLimitBeforePayment:(NSUInteger)payNumber {
+- (void)checkNumberLimitBeforePayment:(int)payNumber {
     [self.payReport checkNumberLimitBeforePayment:payNumber];
 }
 
 // 支付成功后上报玩家支付金额
 // payNumber: 付费金额，单位分
-- (void)reportNumberAfterPayment:(NSUInteger)payNumber {
+- (void)reportNumberAfterPayment:(int)payNumber {
     [self.payReport reportNumberAfterPayment:payNumber];
 }
 
