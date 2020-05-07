@@ -83,6 +83,4 @@
 // payNumber: 付费金额，单位分
 - (void)reportNumberAfterPayment:(NSUInteger)payNumber;
 
-
-
 @end

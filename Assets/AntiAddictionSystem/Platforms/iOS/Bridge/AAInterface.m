@@ -54,12 +54,57 @@ void AASetNotificationCallbacks(
 
 int getUserLoginStatus(AATypeNotificationRef notification) {    
     AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
-    [internalNotification getUserLoginStatus];
+    return [internalNotification getUserLoginStatus];
 }
 
 int getUserAuthenticationIdentity(AATypeNotificationRef notification) {
     AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
     return [internalNotification getUserAuthenticationIdentity];
+}
+
+void showPrivacyPolicyView(AATypeNotificationRef notification) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification showPrivacyPolicyView];
+}
+
+void showLoginViewController(AATypeNotificationRef notification) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification showLoginViewController];
+}
+
+void showUserAuthenticationViewController(AATypeNotificationRef notification) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification showUserAuthenticationViewController];
+}
+
+void loginWithUserNameAndPassword(AATypeNotificationRef notification, const char *userName, const char *password) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification loginWithUserName:userName password:password];
+}
+
+void loginWithThirdPartyPlatform(AATypeNotificationRef notification, const char *token, const char *otherID, const char *platformName) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification loginWithPlatformToken:token otherID:otherID platformName:platformName];
+}
+
+void loginWithZplayID(AATypeNotificationRef notification, const char *zplayID) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification loginWithZplayID:zplayID];
+}
+
+void loginOut(AATypeNotificationRef notification) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification loginOut];
+}
+
+void checkNumberLimitBeforePayment(AATypeNotificationRef notification, int payNumber) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification checkNumberLimitBeforePayment:payNumber];
+}
+
+void reportNumberAfterPayment(AATypeNotificationRef notification, int payNumber) {
+    AANotificationBridge *internalNotification = (__bridge AANotificationBridge *)notification;
+    [internalNotification reportNumberAfterPayment:payNumber];
 }
 
 #pragma mark - Other methods
