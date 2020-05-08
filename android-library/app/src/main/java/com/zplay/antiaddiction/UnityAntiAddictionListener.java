@@ -29,7 +29,8 @@ public interface UnityAntiAddictionListener {
     void userAuthSuccess();
 
     //用户点击回调
-    void userClickLoginButton();
+    void userClickLoginButtonInPayment();
+    void userClickLoginButtonInNoTimeLeft();
 
     void userClickQuitButton();
 

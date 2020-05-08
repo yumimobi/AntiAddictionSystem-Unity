@@ -144,10 +144,18 @@ public class AntiAddictionSDK {
                     }
 
                     @Override
-                    public void userClickLoginButton() {
-                        //游客 状态用户游戏时间结束，用户点击了登录按钮
+                    public void userClickLoginButtonInPayment() {
+                        //游客 状态用户点击支付时提示异常，用户点击了登录按钮，请引导用户进行登录操作，用户可以关闭登录继续玩游戏
                         if (listener != null) {
-                            listener.userClickLoginButton();
+                            listener.userClickLoginButtonInPayment();
+                        }
+                    }
+
+                    @Override
+                    public void userClickLoginButtonInNoTimeLeft() {
+                        //游客 状态用户可以玩的游戏时间结束，用户点击了登录按钮，请引导用户进行登录操作，并且如果未登录完成，不让用户玩游戏
+                        if (listener != null) {
+                            listener.userClickLoginButtonInNoTimeLeft();
                         }
                     }
 

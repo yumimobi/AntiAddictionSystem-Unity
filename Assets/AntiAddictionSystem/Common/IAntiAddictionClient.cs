@@ -22,7 +22,8 @@ namespace AntiAddictionSystem.Common
 
         //用户提示界面回调
         event EventHandler<EventArgs> OnWarningHasBeenShown;
-        event EventHandler<EventArgs> OnUserClickLoginButton;
+        event EventHandler<EventArgs> OnUserClickLoginButtonInPayment;
+        event EventHandler<EventArgs> OnUserClickLoginButtonInNoTimeLeft;
         event EventHandler<EventArgs> OnUserClickQuitButton;
         event EventHandler<EventArgs> OnUserClickConfirmButton;
         //注销登录

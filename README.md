@@ -55,6 +55,17 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 
 <img src='resources/force_resolve.png'>  
 
+### 配置防沉迷SDK参数
+
+#### 配置 iOS 参数
+
+#### 配置 Android 参数
+
+请修改Assets/Plugins/Android/assets/ZplayConfig.xml文件中的参数
+<img src='resources/android-setting.png'>  
+
+`提示：ZplayConfig.xml文件中的GameID，ChannelID，Zplay_SDK_KEY参数，请联系掌游产品获取`
+
 
 # 快速接入
 
@@ -151,10 +162,15 @@ AntiAddictionSDK antiAddictionSDK;
     {
         print("AntiAddiction---HandleWarningHasBeenShown");
     }
-    //用户点击防沉迷提示界面上的登录按钮
-    public void HandleUserClickLoginButton(object sender, EventArgs args)
+   //当用户在游客模式点击支付，防沉迷SDK判断当前为游客模式时会弹出提示让用户选择是否登录，当用户点击登陆按钮后会触发此回调，游戏收到回调后需引导用户进行登录，用户不登录也可以继续游戏
+    public void HandleUserClickLoginButtonInPayment(object sender, EventArgs args)
     {
-        print("AntiAddiction---HandleUserClickLoginButton");
+        print("AntiAddiction---HandleUserClickLoginButtonInPayment");
+    }
+    //当用户以游客身份在游戏中时长已到即接收到此回调，防沉迷SDK会弹出弹窗让用户登录后继续游戏或退出游戏，游戏需要引导用户进行登录，并且处理用户不登录则不可继续游戏的逻辑。
+    public void HandleUserClickLoginButtonInNoTimeLeft(object sender, EventArgs args)
+    {
+        print("AntiAddiction---HandleUserClickLoginButtonInNoTimeLeft");
     }
     //用户点击防沉迷提示界面上的退出游戏按钮
     public void HandleUserClickQuitButton(object sender, EventArgs args)
@@ -211,6 +227,7 @@ if (antiAddictionSDK != null)
 
 ##### 1. 防沉迷SDK登录接口
 `注：若您的APP无登录功能、无登录界面，使用防沉迷SDK的登录功能可调用此接口。`
+
 登录界面由SDK实现，您只需监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功，进而执行应用逻辑。
 
 ```c#
@@ -222,7 +239,8 @@ if (antiAddictionSDK != null)
 
 ##### 2. 账号密码登录接口
 `注：若您的APP有登陆页面，只需使用我方登录接口，可调用此接口`
-应用如果使用游戏自己设计的登录界面，可以将登录界面中用户输入的账号&密码传给防沉迷SDK，使用下面的接口进行登录。
+
+应用如果使用游戏自己设计的登录界面，可以将登录界面中用户输入的账号密码传给防沉迷SDK，使用下面的接口进行登录。
 您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
 
 ```c#
@@ -360,16 +378,4 @@ if (antiAddictionSDK != null)
 {
     antiAddictionSDK.GameOnResume();
 }
-```
-
-##### 5. 游戏模式
-当用户以游客身份在游戏中时长已到即接收到此回调，防沉迷SDK会弹出弹窗让用户登录后继续游戏或退出游戏，游戏需要自行处理用户不登录则不可继续游戏逻辑。
-
-
-```
-    //用户点击防沉迷提示界面上的登录按钮
-    public void HandleUserClickLoginButton(object sender, EventArgs args)
-    {
-        print("AntiAddiction---HandleUserClickLoginButton");
-    }
 ```

@@ -21,7 +21,8 @@ namespace AntiAddictionSystem.Android
         public event EventHandler<EventArgs> OnUserAuthVcHasBeenShown = delegate { };
         public event EventHandler<EventArgs> OnUserAuthSuccess = delegate { };
         public event EventHandler<EventArgs> OnWarningHasBeenShown = delegate { };
-        public event EventHandler<EventArgs> OnUserClickLoginButton = delegate { };
+        public event EventHandler<EventArgs> OnUserClickLoginButtonInPayment = delegate { };
+        public event EventHandler<EventArgs> OnUserClickLoginButtonInNoTimeLeft = delegate { };
         public event EventHandler<EventArgs> OnUserClickQuitButton = delegate { };
         public event EventHandler<EventArgs> OnUserClickConfirmButton = delegate { };
         public event EventHandler<EventArgs> OnLogoutCallback = delegate { };
@@ -180,11 +181,19 @@ namespace AntiAddictionSystem.Android
             }
         }
 
-        void userClickLoginButton()
+        void userClickLoginButtonInPayment()
         {
-            if (OnUserClickLoginButton != null)
+            if (OnUserClickLoginButtonInPayment != null)
             {
-                OnUserClickLoginButton(this, EventArgs.Empty);
+                OnUserClickLoginButtonInPayment(this, EventArgs.Empty);
+            }
+        }
+
+        void userClickLoginButtonInNoTimeLeft()
+        {
+            if (OnUserClickLoginButtonInNoTimeLeft != null)
+            {
+                OnUserClickLoginButtonInNoTimeLeft(this, EventArgs.Empty);
             }
         }
 
