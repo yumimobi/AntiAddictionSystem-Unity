@@ -17,7 +17,7 @@
 
 ## 下载防沉迷 Unity 插件  
 
-借助 防沉迷 Unity 插件，Unity 开发者无需编写 Java 或 Objective-C 代码，即可轻松地在 Android 和 iOS 应用上实现防沉迷的功能。  
+借助防沉迷 Unity 插件，Unity 开发者无需编写 Java 或 Objective-C 代码，即可轻松地在 Android 和 iOS 应用上实现防沉迷的功能。  
 该插件提供了一个 C# 界面，用于 Unity 项目中 C# 脚本使用防沉迷功能。
 
 请通过如下链接下载该插件的 Unity 软件包，或在 GitHub 上查看其代码。
@@ -57,7 +57,7 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 
 
 # 快速接入
-## 横幅  
+
 ### 创建 AntiAddictionSDK
 
 ```c#
@@ -149,6 +149,8 @@ AntiAddictionSDK antiAddictionSDK;
     }
 
 //防沉迷SDK提示界面回调
+//当提示界面展示时，应用需通过监听下列回调，进行应用逻辑的调整
+//例如当用户在提示界面点击登录，应用需调用对应的登录接口。
     //展示防沉迷提示界面
     public void HandleWarningHasBeenShown(object sender, EventArgs args)
     {
@@ -201,6 +203,9 @@ AntiAddictionSDK antiAddictionSDK;
 ```  
 
 ## 展示隐私政策接口
+在app入口处调用展示隐私政策接口（iOS应用需确保此时根视图已加载完成）。
+此接口为防沉迷逻辑入口，请确保每次启动应用都可调用此方法。
+您无需判断用户是否已经同意隐私政策，SDK将自动判断。
 
 ```c#
 if (antiAddictionSDK != null)
@@ -215,6 +220,7 @@ if (antiAddictionSDK != null)
 </span>
 
 ### 展示防沉迷SDK登录界面接口
+此界面由SDK实现，您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功，进而执行应用逻辑。
 
 ```c#
 if (antiAddictionSDK != null)
@@ -224,7 +230,9 @@ if (antiAddictionSDK != null)
 ```
 
 ### 账号&密码进行登录
-游戏如果使用游戏自己设计的登录界面，可以将登录界面中用户输入的账号&密码传给防沉迷SDK，使用下面的接口进行登录
+应用如果使用游戏自己设计的登录界面，可以将登录界面中用户输入的账号&密码传给防沉迷SDK，使用下面的接口进行登录。
+您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
+
 ```c#
 if (antiAddictionSDK != null)
 {
@@ -236,6 +244,8 @@ if (antiAddictionSDK != null)
 
 ### 三方登录平台进行登录
 游戏如果接入了三方(微信，QQ等)平台的登录，可以将三方平台返回的用户唯一标识通过以下的接口进行登录
+您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
+
 ```c#
 if (antiAddictionSDK != null)
 {   
@@ -248,6 +258,7 @@ if (antiAddictionSDK != null)
 
 ### Zplay封装的登录SDK进行登录
 游戏如果使用Zplay封装的登录SDK，并且获取到了登录成功之后的ZplayId，请使用下面的接口进行登录
+您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
 ```c#
 if (antiAddictionSDK != null)
 {
@@ -274,18 +285,11 @@ if (antiAddictionSDK != null)
 }
 ```
 
-## 注销登录接口
-游戏需要进行注销登录操作，请使用下面的接口进行注销实名认证用户账号
-```c#
-if (antiAddictionSDK != null)
-{
-    antiAddictionSDK.LoginOut();
-}
-```
-
 ## 支付相关接口
 ### 检测本次用户购买是否可以支付
-用户购买之前，调用此接口检测，检测的结果请看防沉迷SDK的回调接口
+用户购买之前，调用此接口检测.
+您可监听`HandleCanPay()`,`HandleProhibitPay()`,判断用户是否可以支付。
+
 ```c#
 if (antiAddictionSDK != null)
 {
@@ -295,7 +299,7 @@ if (antiAddictionSDK != null)
 ```
 
 ### 用户支付成功上报
-用户支付成功后，请将用户的支付金额上报给防沉迷系统ß
+用户支付成功后，请将用户的支付金额上报给防沉迷系统
 ```c#
 if (antiAddictionSDK != null)
 {   
@@ -332,6 +336,8 @@ if (antiAddictionSDK != null)
 ```
 
 ### 游戏退到后台接口
+此接口仅适用于Android平台。
+iOS平台无需调用。
 当用户按home键，将游戏退出到后台时，请调用下面的接口
 
 <span style="color:rgb(255,0,0);">
@@ -346,6 +352,8 @@ if (antiAddictionSDK != null)
 ```
 
 ### 游戏恢复前台接口
+此接口仅适用于Android平台。
+iOS平台无需调用。
 当用户将游戏恢复到前台时，请调用下面的接口
 
 <span style="color:rgb(255,0,0);">
