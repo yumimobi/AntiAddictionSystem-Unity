@@ -32,8 +32,10 @@ void AASetNotificationCallbacks(
         AAUserAuthSuccessCallback userAuthSuccessCallback,
         // warning vc已展示
         AAWarningVcHasBeenShownCallback warningVcHasBeenShownCallback,
-        // 用户在提示界面点击登录
-        AAUserClickLoginButtonCallback userClickLoginButtonCallback,
+        // 用户支付失败时，在提示界面点击登录
+        AAUserClickLoginButtonInPaymentWarningVcCallback userClickLoginButtonInPaymentWarningVcCallback,
+        // 用户游戏时长不足时，在提示界面点击登录
+        AAUserClickLoginButtonInNoTimeLeftWarningVcCallback userClickLoginButtonInNoTimeLeftWarningVcCallback,
         // 用户在提示界面点击退出游戏
         AAUserClickLoginOutButtonCallback userClickLoginOutButtonCallback,
         // 用户在提示界面点击确定
@@ -54,7 +56,8 @@ void AASetNotificationCallbacks(
     internalNotification.userAuthVcHasBeenShownCallback = userAuthVcHasBeenShownCallback;
     internalNotification.userAuthSuccessCallback = userAuthSuccessCallback;
     internalNotification.warningVcHasBeenShownCallback = warningVcHasBeenShownCallback;
-    internalNotification.userClickLoginButtonCallback = userClickLoginButtonCallback;
+    internalNotification.AAUserClickLoginButtonInPaymentWarningVcCallback = userClickLoginButtonInPaymentWarningVcCallback;
+    internalNotification.userClickLoginButtonInNoTimeLeftWarningVcCallback = userClickLoginButtonInNoTimeLeftWarningVcCallback;
     internalNotification.userClickLoginOutButtonCallback = userClickLoginOutButtonCallback;
     internalNotification.userClickConfirmButtonCallback = userClickConfirmButtonCallback;
     internalNotification.loginOutSuccessfullCallback = loginOutSuccessfullCallback;
