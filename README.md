@@ -58,6 +58,16 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 ### 配置防沉迷SDK参数
 
 #### 配置 iOS 参数
+请在info.plist中添加如下参数。
+参数获取请联系产品。
+```
+    <key>gamecode</key>
+    <string>123</string>
+    <key>zchannelid</key>
+    <string>123</string>
+    <key>zkey</key>
+    <string>3756116173</string>
+```
 
 #### 配置 Android 参数
 
