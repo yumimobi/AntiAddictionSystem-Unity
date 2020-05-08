@@ -137,30 +137,44 @@ namespace AntiAddictionSystem.Api
 
         }
 
-        //隐私协议回调
+        // 隐私协议回调
+        // 隐私协议界面已经展示
         public event EventHandler<EventArgs> OnPrivacyPolicyShown;
+        // 用户已经同意隐私协议
         public event EventHandler<EventArgs> OnUserAgreesToPrivacyPolicy;
 
-        //登录回调
+        // 登录回调
+        // 登录成功
         public event EventHandler<LoginSuccessEventArgs> OnLoginSuccess;
+        // 登录界面已经展示
         public event EventHandler<EventArgs> OnLoginHasBeenShown;
+        // 登录界面已经隐藏
         public event EventHandler<EventArgs> OnLoginHasBeenDismissed;
+        // 登录失败
         public event EventHandler<EventArgs> OnLoginFail;
 
-        //实名认证回调
+        // 实名认证回调
+        // 实名认证界面开始展示
         public event EventHandler<EventArgs> OnUserAuthVcHasBeenShown;
+        // 实名认证成功
         public event EventHandler<EventArgs> OnUserAuthSuccess;
 
-        //用户提示界面回调
+        // 用户提示界面回调
+        // 用户提示界面开始展示
         public event EventHandler<EventArgs> OnWarningHasBeenShown;
+        // 用户在提示界面点击登录
         public event EventHandler<EventArgs> OnUserClickLoginButton;
+        // 用户在提示界面点击退出
         public event EventHandler<EventArgs> OnUserClickQuitButton;
+        // 用户在提示界面点击确定
         public event EventHandler<EventArgs> OnUserClickConfirmButton;
-        //注销登录
+        // 注销登录成功
         public event EventHandler<EventArgs> OnLogoutCallback;
 
-        //检测支付
+        // 支付前调用`CheckNumberLimitBeforePayment`会返回如下两个回调
+        // 可以支付
         public event EventHandler<EventArgs> OnCanPay;
+        // 不可以支付
         public event EventHandler<EventArgs> OnProhibitPay;
      
         // 获取当前用户登录状态
