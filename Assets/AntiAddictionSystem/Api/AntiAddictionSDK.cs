@@ -87,14 +87,23 @@ namespace AntiAddictionSystem.Api
                 }
             };
 
-            client.OnUserClickLoginButton += (sender, args) =>
+            client.OnUserClickLoginButtonInPayment += (sender, args) =>
             {
-                if (OnUserClickLoginButton != null)
+                if (OnUserClickLoginButtonInPayment != null)
                 {
-                    OnUserClickLoginButton(this, args);
+                    OnUserClickLoginButtonInPayment(this, args);
                 }
             };
 
+            client.OnUserClickLoginButtonInNoTimeLeft += (sender, args) =>
+            {
+                if (OnUserClickLoginButtonInNoTimeLeft != null)
+                {
+                    OnUserClickLoginButtonInNoTimeLeft(this, args);
+                }
+            };
+
+            
             client.OnUserClickQuitButton += (sender, args) =>
             {
                 if (OnUserClickQuitButton != null)
@@ -162,8 +171,10 @@ namespace AntiAddictionSystem.Api
         // 用户提示界面回调
         // 用户提示界面开始展示
         public event EventHandler<EventArgs> OnWarningHasBeenShown;
-        // 用户在提示界面点击登录
-        public event EventHandler<EventArgs> OnUserClickLoginButton;
+        // 用户在游客模式不可支付提示界面点击登录
+        public event EventHandler<EventArgs> OnUserClickLoginButtonInPayment;
+        // 用户在游客模式可玩时间超时提示界面点击登录
+        public event EventHandler<EventArgs> OnUserClickLoginButtonInNoTimeLeft;
         // 用户在提示界面点击退出
         public event EventHandler<EventArgs> OnUserClickQuitButton;
         // 用户在提示界面点击确定

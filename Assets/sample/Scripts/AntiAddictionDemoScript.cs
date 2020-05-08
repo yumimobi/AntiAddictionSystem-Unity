@@ -33,7 +33,8 @@ public class AntiAddictionDemoScript : MonoBehaviour
         antiAddictionSDK.OnUserAuthVcHasBeenShown += HandleUserAuthVcHasBeenShown;
         antiAddictionSDK.OnUserAuthSuccess += HandleUserAuthSuccess;
         antiAddictionSDK.OnWarningHasBeenShown += HandleWarningHasBeenShown;
-        antiAddictionSDK.OnUserClickLoginButton += HandleUserClickLoginButton;
+        antiAddictionSDK.OnUserClickLoginButtonInPayment += HandleUserClickLoginButtonInPayment;
+        antiAddictionSDK.OnUserClickLoginButtonInNoTimeLeft += HandleUserClickLoginButtonInNoTimeLeft;
         antiAddictionSDK.OnUserClickQuitButton += HandleUserClickQuitButton;
         antiAddictionSDK.OnUserClickConfirmButton += HandleUserClickConfirmButton;
         antiAddictionSDK.OnLoginFail += HandleLoginFail;
@@ -323,10 +324,16 @@ public class AntiAddictionDemoScript : MonoBehaviour
         print("AntiAddiction---HandleWarningHasBeenShown");
     }
 
-    public void HandleUserClickLoginButton(object sender, EventArgs args)
+    public void HandleUserClickLoginButtonInPayment(object sender, EventArgs args)
     {
-        statusText.text = "HandleUserClickLoginButton";
-        print("AntiAddiction---HandleUserClickLoginButton");
+        statusText.text = "HandleUserClickLoginButtonInPayment";
+        print("AntiAddiction---HandleUserClickLoginButtonInPayment");
+    }
+
+    public void HandleUserClickLoginButtonInNoTimeLeft(object sender, EventArgs args)
+    {
+        statusText.text = "HandleUserClickLoginButtonInNoTimeLeft";
+        print("AntiAddiction---HandleUserClickLoginButtonInNoTimeLeft");
     }
 
     public void HandleUserClickQuitButton(object sender, EventArgs args)

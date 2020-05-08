@@ -30,7 +30,7 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.zplay.sdk:antiaddiction:0.0.3'
+    implementation 'com.zplay.sdk:antiaddiction:0.0.6'
 
 }
 
