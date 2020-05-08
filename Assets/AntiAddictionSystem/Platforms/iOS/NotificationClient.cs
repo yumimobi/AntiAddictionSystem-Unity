@@ -79,7 +79,7 @@ namespace AntiAddictionSystem.iOS
                 userAuthSuccessCallback,
                 warningVcHasBeenShownCallback,
                 userClickLoginButtonInPaymentWarningVcCallback,
-                userClickLoginButtonInNoTimeLeftWarningVcCallback，
+                userClickLoginButtonInNoTimeLeftWarningVcCallback,
                 userClickLoginOutButtonCallback,
                 userClickConfirmButtonCallback,
                 loginOutSuccessfullCallback,
