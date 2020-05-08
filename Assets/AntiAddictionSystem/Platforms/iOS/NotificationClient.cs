@@ -24,7 +24,8 @@ namespace AntiAddictionSystem.iOS
         internal delegate void AAUserAuthVcHasBeenShownCallback(IntPtr notificationClient);
         internal delegate void AAUserAuthSuccessCallback(IntPtr notificationClient);
         internal delegate void AAWarningVcHasBeenShownCallback(IntPtr notificationClient);
-        internal delegate void AAUserClickLoginButtonCallback(IntPtr notificationClient);
+        internal delegate void AAUserClickLoginButtonInPaymentWarningVcCallback(IntPtr notificationClient);
+        internal delegate void AAUserClickLoginButtonInNoTimeLeftWarningVcCallback(IntPtr notificationClient);
         internal delegate void AAUserClickLoginOutButtonCallback(IntPtr notificationClient);
         internal delegate void AAUserClickConfirmButtonCallback(IntPtr notificationClient);
         internal delegate void AALoginOutSuccessfullCallback(IntPtr notificationClient);
@@ -49,7 +50,8 @@ namespace AntiAddictionSystem.iOS
         
         //用户提示界面回调
         public event EventHandler<EventArgs> OnWarningHasBeenShown;
-        public event EventHandler<EventArgs> OnUserClickLoginButton;
+        public event EventHandler<EventArgs> OnUserClickLoginButtonInPayment;
+        public event EventHandler<EventArgs> OnUserClickLoginButtonInNoTimeLeft;
         public event EventHandler<EventArgs> OnUserClickQuitButton;
         public event EventHandler<EventArgs> OnUserClickConfirmButton;
         
@@ -76,7 +78,8 @@ namespace AntiAddictionSystem.iOS
                 userAuthVcHasBeenShownCallback,
                 userAuthSuccessCallback,
                 warningVcHasBeenShownCallback,
-                userClickLoginButtonCallback,
+                userClickLoginButtonInPaymentWarningVcCallback,
+                userClickLoginButtonInNoTimeLeftWarningVcCallback，
                 userClickLoginOutButtonCallback,
                 userClickConfirmButtonCallback,
                 loginOutSuccessfullCallback,
@@ -259,13 +262,23 @@ namespace AntiAddictionSystem.iOS
             }
         }
 
-        [MonoPInvokeCallback(typeof(AAUserClickLoginButtonCallback))]
-        private static void userClickLoginButtonCallback(IntPtr notificationClient)
+        [MonoPInvokeCallback(typeof(AAUserClickLoginButtonInPaymentWarningVcCallback))]
+        private static void userClickLoginButtonInPaymentWarningVcCallback(IntPtr notificationClient)
         {
             NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
-            if (client.OnUserClickLoginButton != null)
+            if (client.OnUserClickLoginButtonInPayment != null)
             {
-                client.OnUserClickLoginButton(client, EventArgs.Empty);
+                client.OnUserClickLoginButtonInPayment(client, EventArgs.Empty);
+            }
+        }
+
+        [MonoPInvokeCallback(typeof(AAUserClickLoginButtonInNoTimeLeftWarningVcCallback))]
+        private static void userClickLoginButtonInNoTimeLeftWarningVcCallback(IntPtr notificationClient)
+        {
+            NotificationClient client = IntPtrToNotifiactionClient(notificationClient);
+            if (client.OnUserClickLoginButtonInNoTimeLeft != null)
+            {
+                client.OnUserClickLoginButtonInNoTimeLeft(client, EventArgs.Empty);
             }
         }
 
