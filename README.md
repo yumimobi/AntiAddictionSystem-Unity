@@ -116,21 +116,18 @@ AntiAddictionSDK antiAddictionSDK;
     //登录界面展示
     public void HandleLoginHasBeenShown(object sender, EventArgs args)
     {
-        statusText.text = "HandleLoginHasBeenShown";
         print("AntiAddiction---HandleLoginHasBeenShown");
     }
 
     //登录界面关闭
     public void HandleLoginHasBeenDismissed(object sender, EventArgs args)
     {
-        statusText.text = "HandleLoginHasBeenDismissed";
         print("AntiAddiction---HandleLoginHasBeenDismissed");
     }
 
     //登录失败
     public void HandleLoginFail(object sender, EventArgs args)
     {
-        statusText.text = "HandleLoginFail";
         print("AntiAddiction---HandleLoginFail");
     }
 
@@ -138,13 +135,11 @@ AntiAddictionSDK antiAddictionSDK;
     //实名认证界面展示
     public void HandleUserAuthVcHasBeenShown(object sender, EventArgs args)
     {
-        statusText.text = "HandleUserAuthVcHasBeenShown";
         print("AntiAddiction---HandleUserAuthVcHasBeenShown");
     }
     //实名认证通过
     public void HandleUserAuthSuccess(object sender, EventArgs args)
     {
-        statusText.text = "HandleUserAuthSuccess";
         print("AntiAddiction---HandleUserAuthSuccess");
     }
 
@@ -154,33 +149,28 @@ AntiAddictionSDK antiAddictionSDK;
     //展示防沉迷提示界面
     public void HandleWarningHasBeenShown(object sender, EventArgs args)
     {
-        statusText.text = "HandleWarningHasBeenShown";
         print("AntiAddiction---HandleWarningHasBeenShown");
     }
     //用户点击防沉迷提示界面上的登录按钮
     public void HandleUserClickLoginButton(object sender, EventArgs args)
     {
-        statusText.text = "HandleUserClickLoginButton";
         print("AntiAddiction---HandleUserClickLoginButton");
     }
     //用户点击防沉迷提示界面上的退出游戏按钮
     public void HandleUserClickQuitButton(object sender, EventArgs args)
     {
-        statusText.text = "HandleUserClickQuitButton";
         print("AntiAddiction---HandleUserClickQuitButton");
     }
 
     //用户点击防沉迷提示界面上的确定按钮
     public void HandleUserClickConfirmButton(object sender, EventArgs args)
     {
-        statusText.text = "HandleUserClickConfirmButton";
         print("AntiAddiction---HandleUserClickConfirmButton");
     }
     
 //注销登录接口回调
     public void HandleLogoutCallback(object sender, EventArgs args)
     {
-        statusText.text = "HandleLogoutCallback";
         print("AntiAddiction---HandleLogoutCallback");
     }
 
@@ -188,13 +178,11 @@ AntiAddictionSDK antiAddictionSDK;
     //允许支付
     public void HandleCanPay(object sender, EventArgs args)
     {
-        statusText.text = "HandleCanPay";
         print("AntiAddiction---HandleCanPay");
     }
     //不允许支付
     public void HandleProhibitPay(object sender, EventArgs args)
     {
-        statusText.text = "HandleProhibitPay";
         print("AntiAddiction---HandleProhibitPay");
     }
 
@@ -203,7 +191,7 @@ AntiAddictionSDK antiAddictionSDK;
 ```  
 
 ### 展示隐私政策接口
-在APP入口处调用展示隐私政策接口（iOS应用需确保此时根视图已加载完成）。
+在APP启动时调用展示隐私政策接口（iOS应用需确保此时根视图已加载完成）。
 此接口为防沉迷逻辑入口，请确保每次启动应用都可调用此方法。
 您无需判断用户是否已经同意隐私政策，SDK将自动判断。
 
@@ -374,3 +362,14 @@ if (antiAddictionSDK != null)
 }
 ```
 
+##### 5. 游戏模式
+当用户以游客身份在游戏中时长已到即接收到此回调，防沉迷SDK会弹出弹窗让用户登录后继续游戏或退出游戏，游戏需要自行处理用户不登录则不可继续游戏逻辑。
+
+
+```
+    //用户点击防沉迷提示界面上的登录按钮
+    public void HandleUserClickLoginButton(object sender, EventArgs args)
+    {
+        print("AntiAddiction---HandleUserClickLoginButton");
+    }
+```
