@@ -24,8 +24,10 @@ typedef void (*AAUserAuthVcHasBeenShownCallback)(AATypeNotificationClientRef *aa
 typedef void (*AAUserAuthSuccessCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // warning vc已展示
 typedef void (*AAWarningVcHasBeenShownCallback)(AATypeNotificationClientRef *aaNotificationClient);
-// 用户在提示界面点击登录
-typedef void (*AAUserClickLoginButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
+// 用户支付失败时，在提示界面点击登录
+typedef void (*AAUserClickLoginButtonInPaymentWarningVcCallback)(AATypeNotificationClientRef *aaNotificationClient);
+// 用户游戏时长不足时，在提示界面点击登录
+typedef void (*AAUserClickLoginButtonInNoTimeLeftWarningVcCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击退出游戏
 typedef void (*AAUserClickLoginOutButtonCallback)(AATypeNotificationClientRef *aaNotificationClient);
 // 用户在提示界面点击确定
