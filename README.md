@@ -55,6 +55,17 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 
 <img src='resources/force_resolve.png'>  
 
+### 配置防沉迷SDK参数
+
+#### 配置 iOS 参数
+
+#### 配置 Android 参数
+
+请修改Assets/Plugins/Android/assets/ZplayConfig.xml文件中的参数
+<img src='resources/android-setting.png'>  
+
+`提示：ZplayConfig.xml文件中的GameID，ChannelID，Zplay_SDK_KEY参数，请联系掌游产品获取`
+
 
 # 快速接入
 
