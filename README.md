@@ -79,7 +79,7 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 
 # 快速接入
 
-### 创建 AntiAddictionSDK
+### 1. 创建 AntiAddictionSDK
 
 ```c#
 using System;
@@ -177,7 +177,10 @@ AntiAddictionSDK antiAddictionSDK;
     {
         print("AntiAddiction---HandleUserClickLoginButtonInPayment");
     }
-    //当用户以游客身份在游戏中时长已到即接收到此回调，防沉迷SDK会弹出弹窗让用户登录后继续游戏或退出游戏，游戏需要引导用户进行登录，并且处理用户不登录则不可继续游戏的逻辑。
+    
+    //【重要】当用户以游客身份在游戏中时长已到即接收到此回调
+    //【重要】防沉迷SDK会弹出弹窗让用户登录后继续游戏或退出游戏
+    //【重要】游戏需要引导用户进行登录，并且处理用户不登录则不可继续游戏的逻辑。
     public void HandleUserClickLoginButtonInNoTimeLeft(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleUserClickLoginButtonInNoTimeLeft");
@@ -216,7 +219,7 @@ AntiAddictionSDK antiAddictionSDK;
 }
 ```  
 
-### 展示隐私政策接口
+### 2. 展示隐私政策接口
 在APP启动时调用展示隐私政策接口（iOS应用需确保此时根视图已加载完成）。
 此接口为防沉迷逻辑入口，请确保每次启动应用都可调用此方法。
 您无需判断用户是否已经同意隐私政策，SDK将自动判断。
@@ -228,14 +231,14 @@ if (antiAddictionSDK != null)
 }
 ```  
 
-### 登录相关接口
+### 3. 登录相关接口
 
 
 <span style="color:rgb(150,0,0);">
 <b>重要提示：</b> 应用必须选择下面的一种登录方式进行登录，登录成功之后，防沉迷SDK会自动弹出用户实名认证界面，我们提供了4种登录接口，您可根据项目需要选择使用您需要的接口。
 </span>
 
-##### 1. 防沉迷SDK登录接口
+##### 3.1. 防沉迷SDK登录接口
 `注：若您的APP无登录功能、无登录界面，使用防沉迷SDK的登录功能可调用此接口。`
 
 登录界面由SDK实现，您只需监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功，进而执行应用逻辑。
@@ -247,8 +250,8 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 2. 账号密码登录接口
-`注：若您的APP有登陆页面，只需使用我方登录接口，可调用此接口`
+##### 3.2. 账号密码登录接口
+`注：若您的APP有登录页面，只需使用我方登录接口，可调用此接口`
 
 应用如果使用游戏自己设计的登录界面，可以将登录界面中用户输入的账号密码传给防沉迷SDK，使用下面的接口进行登录。
 您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
@@ -262,10 +265,9 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 3. 三方登录接口
+##### 3.3. 三方登录接口
 `注：若您的APP已经接入微信登录、QQ登录等非ZPLAY登录，需调用此接口`
-将其他登录平台返回的用户唯一标识通过以下的接口传给防沉迷SDK，以此进行登录
-您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
+将其他登录平台返回的用户唯一标识通过以下接口传给防沉迷SDK，以此进行登录，您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
 
 ```c#
 if (antiAddictionSDK != null)
@@ -277,7 +279,7 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 4. Zplay封装的三方登录SDK接口
+##### 3.4. Zplay封装的三方登录SDK接口
 若您使用Zplay封装的三方登录SDK，在获取到了登录成功之后的zplayId，请使用下面的接口进行登录
 您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
 ```c#
@@ -288,7 +290,7 @@ if (antiAddictionSDK != null)
 }
 ```
 
-### 游客实名认证接口
+### 4. 游客实名认证接口
 用户进入游戏且未登录时会默认进入游客模式，若用户在游客模式中，您需要用户进行实名认证时请调用以下接口
 
 ```c#
@@ -298,8 +300,8 @@ if (antiAddictionSDK != null)
 }
 ```
 
-### 注销登录接口
-若您的APP在用户登录后提供退出登录的功能，在用户退出登录时需调用此接口
+### 5. 退出登录接口
+若您的APP在用户登录后提供退出登录或切换账号的功能，在用户退出登录时需调用此接口
 
 ```c#
 if (antiAddictionSDK != null)
@@ -308,10 +310,10 @@ if (antiAddictionSDK != null)
 }
 ```
 
-### 支付相关接口
-根据国家规定，对未成年人在游戏中的单笔付费金额和每月累计付费金额都有限制，因此在用户发起支付时需要调用`检测本次用户购买是否可以支付`接口，用户购买成功后需要调用`用户支付成功上报`接口。
+### 6. 支付相关接口
+根据国家规定，对未成年人在游戏中的单笔付费金额和每月累计付费金额都有限制，因此在用户发起支付时需要调用`判断本次用户购买是否可以支付接口`，用户购买成功后需要调用`用户支付成功上报`接口。
 
-##### 1. 检测本次用户购买是否可以支付
+##### 6.1. 判断本次用户购买是否可以支付接口
 用户购买之前，调用此接口检测，返回可支付后才可发起支付。
 您可监听`HandleCanPay()`,`HandleProhibitPay()`,判断用户是否可以支付。
 
@@ -323,8 +325,8 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 2. 用户支付成功上报接口
-用户支付成功后，请将用户的支付金额上报给防沉迷系统。
+##### 6.2. 用户支付成功上报接口
+用户支付成功后，请通过以下接口将用户的支付金额传给防沉迷SDK。
 ```c#
 if (antiAddictionSDK != null)
 {   
@@ -333,8 +335,8 @@ if (antiAddictionSDK != null)
 }
 ```
 
-### 其他接口
-##### 1. 获取当前登录状态接口
+### 7. 其他接口
+##### 7.1. 获取当前登录状态接口
 请使用下面的接口获取当前用户的登录状态
 ```c#
 if (antiAddictionSDK != null)
@@ -347,7 +349,7 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 2. 获取用户的认证身份
+##### 7.2. 获取用户的认证身份
 获取当前用户的实名认证身份
 ```c#
 if (antiAddictionSDK != null)
@@ -360,7 +362,7 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 3. 游戏退到后台接口
+##### 7.3. 游戏退到后台接口
 此接口仅适用于Android，iOS平台无需调用。
 当用户按home键，将游戏退出到后台时，请务必调用下面的接口
 
@@ -375,7 +377,7 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 4. 游戏恢复前台接口
+##### 7.4. 游戏恢复前台接口
 此接口仅适用于Android，iOS平台无需调用。
 当用户将游戏恢复到前台时，请务必调用下面的接口
 
