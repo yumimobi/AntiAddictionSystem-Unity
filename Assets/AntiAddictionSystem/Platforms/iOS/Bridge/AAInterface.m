@@ -56,7 +56,7 @@ void AASetNotificationCallbacks(
     internalNotification.userAuthVcHasBeenShownCallback = userAuthVcHasBeenShownCallback;
     internalNotification.userAuthSuccessCallback = userAuthSuccessCallback;
     internalNotification.warningVcHasBeenShownCallback = warningVcHasBeenShownCallback;
-    internalNotification.AAUserClickLoginButtonInPaymentWarningVcCallback = userClickLoginButtonInPaymentWarningVcCallback;
+    internalNotification.userClickLoginButtonInPaymentWarningVcCallback = userClickLoginButtonInPaymentWarningVcCallback;
     internalNotification.userClickLoginButtonInNoTimeLeftWarningVcCallback = userClickLoginButtonInNoTimeLeftWarningVcCallback;
     internalNotification.userClickLoginOutButtonCallback = userClickLoginOutButtonCallback;
     internalNotification.userClickConfirmButtonCallback = userClickConfirmButtonCallback;
