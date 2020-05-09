@@ -164,10 +164,16 @@
         self.warningVcHasBeenShownCallback(self.notificationClient);
     }
 }
-// 用户在提示界面点击登录
-- (void)userClickLoginButton {
-    if(self.userClickLoginButtonCallback) {
-        self.userClickLoginButtonCallback(self.notificationClient);
+// 用户支付失败时，在提示界面点击登录
+- (void)userClickLoginButtonInPaymentWarningVc {
+    if(self.userClickLoginButtonInPaymentWarningVcCallback) {
+        self.userClickLoginButtonInPaymentWarningVcCallback(self.notificationClient);
+    }
+}
+// 用户游戏时长不足时，在提示界面点击登录
+- (void)userClickLoginButtonInNoTimeLeftWarningVc {
+    if(self.userClickLoginButtonInNoTimeLeftWarningVcCallback) {
+        self.userClickLoginButtonInNoTimeLeftWarningVcCallback(self.notificationClient);
     }
 }
 // 用户在提示界面点击退出游戏

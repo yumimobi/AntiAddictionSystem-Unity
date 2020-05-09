@@ -28,8 +28,10 @@
 @property(nonatomic, assign) AAUserAuthSuccessCallback userAuthSuccessCallback;
 // warning vc已展示
 @property(nonatomic, assign) AAWarningVcHasBeenShownCallback warningVcHasBeenShownCallback;
-// 用户在提示界面点击登录
-@property(nonatomic, assign) AAUserClickLoginButtonCallback userClickLoginButtonCallback;
+// 用户支付失败时，在提示界面点击登录
+@property(nonatomic, assign) AAUserClickLoginButtonInPaymentWarningVcCallback userClickLoginButtonInPaymentWarningVcCallback;
+// 用户游戏时长不足时，在提示界面点击登录
+@property(nonatomic, assign) AAUserClickLoginButtonInNoTimeLeftWarningVcCallback userClickLoginButtonInNoTimeLeftWarningVcCallback;
 // 用户在提示界面点击退出游戏
 @property(nonatomic, assign) AAUserClickLoginOutButtonCallback userClickLoginOutButtonCallback;
 // 用户在提示界面点击确定
