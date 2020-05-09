@@ -8,7 +8,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="AntiAddictionSystem" version="~> 0.1.1">
+    <iosPod name="AntiAddictionSystem" version="~> 0.1.2">
     </iosPod>
   </iosPods>
 </dependencies>
