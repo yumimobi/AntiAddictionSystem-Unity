@@ -171,17 +171,7 @@ AntiAddictionSDK antiAddictionSDK;
         print("AntiAddiction---HandleWarningHasBeenShown");
     }
 
-    //用户无游戏时长回调
-    //使用场景：
-    //若用户未登录，游戏时长已到时，应用会接收到此回调
-    //防沉迷SDK会弹出弹窗,让用户虚选择登录或是退出游戏，登录后才可继续游戏
-    //游戏需要引导用户进行登录，用户不登录则不可继续游戏的逻辑。
-        public void HandleUserClickLoginButtonInNoTimeLeft(object sender, EventArgs args)
-    {
-        print("AntiAddiction---HandleUserClickLoginButtonInNoTimeLeft");
-    }
-
-    //用户退出游戏回调
+    //未成年用户游戏时长达上限，用户退出游戏回调
     //使用场景：
     //当未成年用户在游戏中时长已到，防沉迷SDK会弹窗提示用户退出游戏，用户点击弹窗上退出游戏按钮时，应用会收到此回调
     //当用户点击退出游戏按钮后，防沉迷SDK会退出游戏，请收到此回调后进行数据保存等相关处理
@@ -190,7 +180,7 @@ AntiAddictionSDK antiAddictionSDK;
         print("AntiAddiction---HandleUserClickQuitButton");
     }
 
-    //用户点击弹窗“确定”按钮回调
+    //未成年用户不可支付，用户点击弹窗“确定”按钮回调
     //使用场景：
     //当用户发起支付，支付不被允许时，防沉迷SDK会弹出弹窗提示用户不可支付，并且有确定按钮
     //当用户点击弹窗上的确定按钮时，应用会收到此回调，防沉迷SDK会关闭弹窗回到应用
@@ -206,6 +196,16 @@ AntiAddictionSDK antiAddictionSDK;
     public void HandleUserClickLoginButtonInPayment(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleUserClickLoginButtonInPayment");
+    }
+
+    //游客游戏时长达上限回调
+    //使用场景：
+    //若用户未登录，游戏时长已到时，应用会接收到此回调
+    //防沉迷SDK会弹出弹窗,让用户去选择登录或是退出游戏，登录后才可继续游戏
+    //游戏需要引导用户进行登录，用户不登录则不可继续游戏的逻辑。
+        public void HandleUserClickLoginButtonInNoTimeLeft(object sender, EventArgs args)
+    {
+        print("AntiAddiction---HandleUserClickLoginButtonInNoTimeLeft");
     }
 
 //退出登录接口回调
