@@ -127,38 +127,35 @@ AntiAddictionSDK antiAddictionSDK;
     }
 
 //登录接口
+    //登录界面展示回调
+    public void HandleLoginHasBeenShown(object sender, EventArgs args)
+    {
+        print("AntiAddiction---HandleLoginHasBeenShown");
+    }
+    //登录界面关闭回调
+    public void HandleLoginHasBeenDismissed(object sender, EventArgs args)
+    {
+        print("AntiAddiction---HandleLoginHasBeenDismissed");
+    }
     //登录成功回调
     public void HandleLoginSuccess(object sender, LoginSuccessEventArgs args)
     {
         String zplayId = args.Message;
         print("AntiAddiction---HandleLoginSuccess: " + zplayId);
     }
-
-    //登录界面展示
-    public void HandleLoginHasBeenShown(object sender, EventArgs args)
-    {
-        print("AntiAddiction---HandleLoginHasBeenShown");
-    }
-
-    //登录界面关闭
-    public void HandleLoginHasBeenDismissed(object sender, EventArgs args)
-    {
-        print("AntiAddiction---HandleLoginHasBeenDismissed");
-    }
-
-    //登录失败
+    //登录失败回调
     public void HandleLoginFail(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleLoginFail");
     }
 
 //实名认证回调
-    //实名认证界面展示
+    //实名认证界面展示回调
     public void HandleUserAuthVcHasBeenShown(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleUserAuthVcHasBeenShown");
     }
-    //实名认证通过
+    //实名认证通过回调
     public void HandleUserAuthSuccess(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleUserAuthSuccess");
@@ -166,52 +163,65 @@ AntiAddictionSDK antiAddictionSDK;
 
 //防沉迷SDK提示界面回调
 //当提示界面展示时，应用需通过监听下列回调，进行应用逻辑的调整
-//例如当用户在提示界面点击登录，应用需调用对应的登录接口。
-    //展示防沉迷提示界面
+//以下会介绍每个回调使用场景
+    //当触发防沉迷逻辑时，防沉迷SDK会有弹窗提示，弹窗显示时应用会收到此回调
     public void HandleWarningHasBeenShown(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleWarningHasBeenShown");
     }
-    //当用户在游客模式点击支付，防沉迷SDK判断当前为游客模式时会弹出提示让用户选择是否登录，
-    //当用户点击登陆按钮后会触发此回调，游戏收到回调后需引导用户进行登录，用户不登录也可以继续游戏
-    public void HandleUserClickLoginButtonInPayment(object sender, EventArgs args)
-    {
-        print("AntiAddiction---HandleUserClickLoginButtonInPayment");
-    }
-    
-    //【重要】当用户以游客身份在游戏中时长已到即接收到此回调
-    //【重要】防沉迷SDK会弹出弹窗让用户登录后继续游戏或退出游戏
-    //【重要】游戏需要引导用户进行登录，并且处理用户不登录则不可继续游戏的逻辑。
-    
-    public void HandleUserClickLoginButtonInNoTimeLeft(object sender, EventArgs args)
+
+    //用户无游戏时长回调
+    //使用场景：
+    //若用户未登录，游戏时长已到时，应用会接收到此回调
+    //防沉迷SDK会弹出弹窗,让用户虚选择登录或是退出游戏，登录后才可继续游戏
+    //游戏需要引导用户进行登录，用户不登录则不可继续游戏的逻辑。
+        public void HandleUserClickLoginButtonInNoTimeLeft(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleUserClickLoginButtonInNoTimeLeft");
     }
-    //用户点击防沉迷提示界面上的退出游戏按钮
+
+    //用户退出游戏回调
+    //使用场景：
+    //当未成年用户在游戏中时长已到，防沉迷SDK会弹窗提示用户退出游戏，用户点击弹窗上退出游戏按钮时，应用会收到此回调
+    //当用户点击退出游戏按钮后，防沉迷SDK会退出游戏，请收到此回调后进行数据保存等相关处理
     public void HandleUserClickQuitButton(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleUserClickQuitButton");
     }
 
-    //用户点击防沉迷提示界面上的确定按钮
+    //用户点击弹窗“确定”按钮回调
+    //使用场景：
+    //当用户发起支付，支付不被允许时，防沉迷SDK会弹出弹窗提示用户不可支付，并且有确定按钮
+    //当用户点击弹窗上的确定按钮时，应用会收到此回调，防沉迷SDK会关闭弹窗回到应用
     public void HandleUserClickConfirmButton(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleUserClickConfirmButton");
     }
     
-//注销登录接口回调
+    //用户点击弹窗“登录”按钮回调
+    //使用场景：
+    //按照规定，用户未登录时不可发起支付，因此用户未登录状态下支付时，防沉迷SDK会弹出弹窗提示用户登录，当用户点击登录按钮后应用会收到此回调
+    //收到此回调后游戏需引导用户进行登录，若用户选择不登录，仍旧可以继续游戏
+    public void HandleUserClickLoginButtonInPayment(object sender, EventArgs args)
+    {
+        print("AntiAddiction---HandleUserClickLoginButtonInPayment");
+    }
+
+//退出登录接口回调
+    //使用场景：当游戏有退出登录或切换账号功能时，当用户退出当前登录账号时应用会收到此回调
     public void HandleLogoutCallback(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleLogoutCallback");
     }
 
 //支付检测接口回调
-    //允许支付
+    //允许支付回调
     public void HandleCanPay(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleCanPay");
     }
     //不允许支付
+    //使用场景：当用户单笔支付金额或当月累计支付金额超过限制时，应用会收到此弹窗
     public void HandleProhibitPay(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleProhibitPay");
@@ -223,7 +233,8 @@ AntiAddictionSDK antiAddictionSDK;
 
 ### 2. 展示隐私政策接口
 在APP启动时调用展示隐私政策接口（iOS应用需确保此时根视图已加载完成）。
-此接口为防沉迷逻辑入口，请确保每次启动应用都可调用此方法。
+
+此接口为防沉迷逻辑入口，请确保每次启动应用都调用此方法。
 您无需判断用户是否已经同意隐私政策，SDK将自动判断。
 
 ```c#
@@ -240,7 +251,7 @@ if (antiAddictionSDK != null)
 <b>重要提示：</b> 应用必须选择下面的一种登录方式进行登录，登录成功之后，防沉迷SDK会自动弹出用户实名认证界面，我们提供了4种登录接口，您可根据项目需要选择使用您需要的接口。
 </span>
 
-##### 3.1. 防沉迷SDK登录接口
+##### 3.1. 防沉迷SDK登录接口（使用防沉迷SDK登录界面）
 `注：若您的APP无登录功能、无登录界面，使用防沉迷SDK的登录功能可调用此接口。`
 
 登录界面由SDK实现，您只需监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功，进而执行应用逻辑。
@@ -252,7 +263,7 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 3.2. 账号密码登录接口
+##### 3.2. 防沉迷SDK登录接口（不使用防沉迷SDK登录界面）
 `注：若您的APP有登录页面，只需使用我方登录接口，可调用此接口`
 
 应用如果使用游戏自己设计的登录界面，可以将登录界面中用户输入的账号密码传给防沉迷SDK，使用下面的接口进行登录。
@@ -282,8 +293,7 @@ if (antiAddictionSDK != null)
 ```
 
 ##### 3.4. Zplay封装的三方登录SDK接口
-若您使用Zplay封装的三方登录SDK，在获取到了登录成功之后的zplayId，请使用下面的接口进行登录
-您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
+若您使用Zplay封装的三方登录SDK，在获取到了登录成功之后的zplayId，请使用下面的接口进行登录，您可监听`HandleLoginSuccess()`,`HandleLoginFail()`,判断用户是否登录成功。
 ```c#
 if (antiAddictionSDK != null)
 {
@@ -292,8 +302,10 @@ if (antiAddictionSDK != null)
 }
 ```
 
-### 4. 游客实名认证接口
-用户进入游戏且未登录时会默认进入游客模式，若用户在游客模式中，您需要用户进行实名认证时请调用以下接口
+### 4. 实名认证接口
+若用户按照上述登录流程登录后，无需调用此方法，防沉迷SDK会自行处理。
+
+若用户进入游戏未登录时会默认进入游客模式，此时您需要用户进行实名认证时请调用以下接口
 
 ```c#
 if (antiAddictionSDK != null)
@@ -313,16 +325,16 @@ if (antiAddictionSDK != null)
 ```
 
 ### 6. 支付相关接口
-根据国家规定，对未成年人在游戏中的单笔付费金额和每月累计付费金额都有限制，因此在用户发起支付时需要调用`判断本次用户购买是否可以支付接口`，用户购买成功后需要调用`用户支付成功上报`接口。
+根据国家规定，对未成年人在游戏中的单笔付费金额和每月累计付费金额都有限制，因此在用户发起支付时需要调用`是否允许支付接口`，用户支付成功后需要调用`用户支付成功上报`接口。
 
-##### 6.1. 判断本次用户购买是否可以支付接口
-用户购买之前，调用此接口检测，返回可支付后才可发起支付。
+##### 6.1. 是否允许支付接口
+用户支付之前，调用此接口检测，返回可支付后才可发起支付。
 您可监听`HandleCanPay()`,`HandleProhibitPay()`,判断用户是否可以支付。
 
 ```c#
 if (antiAddictionSDK != null)
 {
-    //payNumber：用户本次购买的金额，单位分
+    //payNumber：用户本次支付的金额，单位分
     antiAddictionSDK.CheckNumberLimitBeforePayment(payNumber);
 }
 ```
@@ -332,41 +344,18 @@ if (antiAddictionSDK != null)
 ```c#
 if (antiAddictionSDK != null)
 {   
-    //payNumber：用户本次购买成功的金额，单位分
+    //payNumber：用户本次支付成功的金额，单位分
     antiAddictionSDK.ReportNumberAfterPayment(payNumber);
 }
 ```
 
 ### 7. 其他接口
-##### 7.1. 获取当前登录状态接口
-请使用下面的接口获取当前用户的登录状态
-```c#
-if (antiAddictionSDK != null)
-{
-     // 获取当前用户登录状态
-    // 0: 未登录
-    // 1: 游客
-    // 2: 正式用户
-    string loginStatus = antiAddictionSDK.GetUserLoginStatus();
-}
-```
+`注：在Android中，7.1及7.2为必须调用接口，7.3及7.4为非必须调用接口；在iOS中，以下接口均为非必须调用接口`
 
-##### 7.2. 获取用户的认证身份
-获取当前用户的实名认证身份
-```c#
-if (antiAddictionSDK != null)
-{
-    // 获取用户的认证身份
-    // 0: 未知
-    // 1：已成年
-    // 2: 未成年
-    string userAuthenticationIdentity = antiAddictionSDK.GetUserAuthenticationIdentity() + "";
-}
-```
-
-##### 7.3. 游戏退到后台接口
+##### 7.1. 游戏退到后台接口（iOS无需调用）
 此接口仅适用于Android，iOS平台无需调用。
-当用户按home键，将游戏退出到后台时，请务必调用下面的接口
+
+当Android用户按home键，将游戏退出到后台时，请务必调用下面的接口
 
 <span style="color:rgb(255,0,0);">
 <b>重要提示：</b> 游戏退到后台接口必须调用，不调用会导致防沉迷SDK计算游戏时长错误
@@ -379,9 +368,10 @@ if (antiAddictionSDK != null)
 }
 ```
 
-##### 7.4. 游戏恢复前台接口
+##### 7.2. 游戏恢复前台接口（iOS无需调用）
 此接口仅适用于Android，iOS平台无需调用。
-当用户将游戏恢复到前台时，请务必调用下面的接口
+
+当Android用户将游戏恢复到前台时，请务必调用下面的接口
 
 <span style="color:rgb(255,0,0);">
 <b>重要提示：</b> 游戏恢复前台接口必须调用，不调用会导致防沉迷SDK计算游戏时长错误
@@ -393,3 +383,31 @@ if (antiAddictionSDK != null)
     antiAddictionSDK.GameOnResume();
 }
 ```
+
+##### 7.3. 获取当前登录状态接口
+请使用下面的接口获取当前用户的登录状态
+```c#
+if (antiAddictionSDK != null)
+{
+     // 获取当前用户登录状态
+    // 0: 未登录
+    // 1: 游客
+    // 2: 正式用户
+    string loginStatus = antiAddictionSDK.GetUserLoginStatus();
+}
+```
+
+##### 7.4. 获取用户的认证身份
+获取当前用户的实名认证身份
+```c#
+if (antiAddictionSDK != null)
+{
+    // 获取用户的认证身份
+    // 0: 未知
+    // 1：已成年
+    // 2: 未成年
+    string userAuthenticationIdentity = antiAddictionSDK.GetUserAuthenticationIdentity() + "";
+}
+```
+
+
