@@ -164,7 +164,8 @@ AntiAddictionSDK antiAddictionSDK;
 //防沉迷SDK提示界面回调
 //当提示界面展示时，应用需通过监听下列回调，进行应用逻辑的调整
 //以下会介绍每个回调使用场景
-    //当触发防沉迷逻辑时，防沉迷SDK会有弹窗提示，弹窗显示时应用会收到此回调
+
+    //当触发防沉迷逻辑时，防沉迷SDK会有弹窗提示，任意弹窗显示时应用都会收到此回调
     public void HandleWarningHasBeenShown(object sender, EventArgs args)
     {
         print("AntiAddiction---HandleWarningHasBeenShown");
