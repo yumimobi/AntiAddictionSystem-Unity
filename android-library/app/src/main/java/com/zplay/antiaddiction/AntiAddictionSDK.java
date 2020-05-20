@@ -47,16 +47,26 @@ public class AntiAddictionSDK {
                     @Override
                     public void privacyPolicyShown() {
                         //用户隐私协议页面展示
-                        if (listener != null) {
-                            listener.privacyPolicyShown();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.privacyPolicyShown();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void userAgreesToPrivacyPolicy() {
                         //用户同意隐私协议
-                        if (listener != null) {
-                            listener.userAgreesToPrivacyPolicy();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.userAgreesToPrivacyPolicy();
+                                }
+                            });
                         }
                     }
 
@@ -80,22 +90,32 @@ public class AntiAddictionSDK {
 
                 loginCallback = new ZplayLoginCallback() {
                     @Override
-                    public void loginSuccess(String uid, String token, String userName, String loginType) {
+                    public void loginSuccess(final String uid, String token, String userName, String loginType) {
 
                         LogUtils.i(TAG, "uid:" + uid);
                         LogUtils.i(TAG, "token:" + token);
                         //登录成功
-                        if (listener != null) {
-                            Log.i(TAG, "uid:" + uid);
-                            listener.loginSuccess(uid);
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.i(TAG, "uid:" + uid);
+                                    listener.loginSuccess(uid);
+                                }
+                            });
                         }
 
                     }
 
                     @Override
                     public void loginHasBeenShown() {
-                        if (listener != null) {
-                            listener.loginHasBeenShown();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.loginHasBeenShown();
+                                }
+                            });
                         }
                     }
 
@@ -104,15 +124,25 @@ public class AntiAddictionSDK {
                         // TODO Auto-generated method stub
                         Log.d(TAG, "loginCancel: ");
                         //取消登录
-                        if (listener != null) {
-                            listener.loginCancel();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.loginCancel();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void loginFail() {
-                        if (listener != null) {
-                            listener.loginFail();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.loginFail();
+                                }
+                            });
                         }
                     }
                 };
@@ -121,16 +151,26 @@ public class AntiAddictionSDK {
                     @Override
                     public void userAuthVcHasBeenShown() {
                         //实名认证窗口显示
-                        if (listener != null) {
-                            listener.userAuthVcHasBeenShown();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.userAuthVcHasBeenShown();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void userAuthSuccess() {
                         //实名认证通过
-                        if (listener != null) {
-                            listener.userAuthSuccess();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.userAuthSuccess();
+                                }
+                            });
                         }
                     }
                 };
@@ -138,40 +178,65 @@ public class AntiAddictionSDK {
                 warningCallback = new ZplayWarningCallback() {
                     @Override
                     public void warningHasBeenShown() {
-                        if (listener != null) {
-                            listener.warningHasBeenShown();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.warningHasBeenShown();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void userClickLoginButtonInPayment() {
                         //游客 状态用户点击支付时提示异常，用户点击了登录按钮，请引导用户进行登录操作，用户可以关闭登录继续玩游戏
-                        if (listener != null) {
-                            listener.userClickLoginButtonInPayment();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.userClickLoginButtonInPayment();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void userClickLoginButtonInNoTimeLeft() {
                         //游客 状态用户可以玩的游戏时间结束，用户点击了登录按钮，请引导用户进行登录操作，并且如果未登录完成，不让用户玩游戏
-                        if (listener != null) {
-                            listener.userClickLoginButtonInNoTimeLeft();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.userClickLoginButtonInNoTimeLeft();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void userClickQuitButton() {
                         //游客 状态用户游戏时间结束，用户点击了退出游戏按钮
-                        if (listener != null) {
-                            listener.userClickQuitButton();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.userClickQuitButton();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void userClickConfirmButton() {
                         //用户点击了计费提示弹窗上面的确定接口
-                        if (listener != null) {
-                            listener.userClickConfirmButton();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.userClickConfirmButton();
+                                }
+                            });
                         }
                     }
                 };
@@ -242,8 +307,13 @@ public class AntiAddictionSDK {
                 ZplayAddictionSDK.logout(activity, new ZplayLogoutCallback() {
                     @Override
                     public void logout(Activity activity) {
-                        if (listener != null) {
-                            listener.logoutCallback();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.logoutCallback();
+                                }
+                            });
                         }
                     }
                 });
@@ -260,18 +330,28 @@ public class AntiAddictionSDK {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ZplayAddictionSDK.checkNumberLimitBeforePayment(activity, money +"", new ZplayCheckCallback() {
+                ZplayAddictionSDK.checkNumberLimitBeforePayment(activity, money + "", new ZplayCheckCallback() {
                     @Override
                     public void onCanPay() {
-                        if (listener != null) {
-                            listener.onCanPay();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onCanPay();
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void onProhibitPay(String errorMsg) {
-                        if (listener != null) {
-                            listener.onProhibitPay();
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onProhibitPay();
+                                }
+                            });
                         }
                     }
                 });
