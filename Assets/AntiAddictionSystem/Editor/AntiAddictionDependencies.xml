@@ -1,6 +1,6 @@
 ﻿<dependencies>
   <androidPackages>
-    <androidPackage spec="com.zplay.sdk:antiaddiction:1.0.0">
+    <androidPackage spec="com.zplay.sdk:antiaddiction:1.0.6">
       <repositories>
         <repository>https://jcenter.bintray.com/</repository>
       </repositories>
