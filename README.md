@@ -22,7 +22,7 @@
 
 请通过如下链接下载该插件的 Unity 软件包，或在 GitHub 上查看其代码。
 
-[下载插件](https://github.com/yumimobi/AntiAddictionSystem-Unity/releases/download/1.0.6/AntiAddictionSystem.unitypackage)  
+[下载插件](https://github.com/yumimobi/AntiAddictionSystem-Unity/releases/download/1.1.2/AntiAddictionSystem.unitypackage)  
 [查看源代码](https://github.com/yumimobi/AntiAddictionSystem-Unity) 
 
 ### 导入防沉迷 Unity 插件
@@ -102,6 +102,7 @@ AntiAddictionSDK antiAddictionSDK;
     antiAddictionSDK.OnLoginHasBeenShown += HandleLoginHasBeenShown;
     antiAddictionSDK.OnLoginHasBeenDismissed += HandleLoginHasBeenDismissed;
     antiAddictionSDK.OnLoginFail += HandleLoginFail;
+    antiAddictionSDK.OnSwitch += HandleSwitch;
     antiAddictionSDK.OnUserAuthVcHasBeenShown += HandleUserAuthVcHasBeenShown;
     antiAddictionSDK.OnUserAuthSuccess += HandleUserAuthSuccess;
     antiAddictionSDK.OnWarningHasBeenShown += HandleWarningHasBeenShown;
@@ -148,6 +149,12 @@ AntiAddictionSDK antiAddictionSDK;
     {
         print("AntiAddiction---HandleLoginFail");
     }
+    //用户点击切换账号按钮，请引导用户切换账号
+    public void HandleSwitch(object sender, EventArgs args)
+    {
+        print("AntiAddiction---HandleSwitch");
+    }
+    
 
 //实名认证回调
     //实名认证界面展示回调

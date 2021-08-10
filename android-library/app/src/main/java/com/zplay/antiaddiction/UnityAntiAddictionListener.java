@@ -23,6 +23,8 @@ public interface UnityAntiAddictionListener {
 
     void loginFail();
 
+    void onSwitch();
+
     //实名认证回调
     void userAuthVcHasBeenShown();
 

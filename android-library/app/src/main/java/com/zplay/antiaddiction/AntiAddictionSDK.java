@@ -135,6 +135,18 @@ public class AntiAddictionSDK {
                     }
 
                     @Override
+                    public void onSwitch() {
+                        if (listener != null && activity != null) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listener.onSwitch();
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
                     public void loginFail() {
                         if (listener != null && activity != null) {
                             activity.runOnUiThread(new Runnable() {
