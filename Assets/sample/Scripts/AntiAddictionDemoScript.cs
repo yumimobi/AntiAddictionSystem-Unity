@@ -30,6 +30,7 @@ public class AntiAddictionDemoScript : MonoBehaviour
         antiAddictionSDK.OnLoginHasBeenShown += HandleLoginHasBeenShown;
         antiAddictionSDK.OnLoginHasBeenDismissed += HandleLoginHasBeenDismissed;
         antiAddictionSDK.OnLoginFail += HandleLoginFail;
+        antiAddictionSDK.OnSwitch += HandleSwitch;
         antiAddictionSDK.OnUserAuthVcHasBeenShown += HandleUserAuthVcHasBeenShown;
         antiAddictionSDK.OnUserAuthSuccess += HandleUserAuthSuccess;
         antiAddictionSDK.OnWarningHasBeenShown += HandleWarningHasBeenShown;
@@ -306,6 +307,12 @@ public class AntiAddictionDemoScript : MonoBehaviour
         print("AntiAddiction---HandleLoginFail");
     }
 
+    public void HandleSwitch(object sender, EventArgs args)
+    {
+        statusText.text = "HandleSwitch";
+        print("AntiAddiction---HandleSwitch");
+    }
+    
     public void HandleUserAuthVcHasBeenShown(object sender, EventArgs args)
     {
         statusText.text = "HandleUserAuthVcHasBeenShown";

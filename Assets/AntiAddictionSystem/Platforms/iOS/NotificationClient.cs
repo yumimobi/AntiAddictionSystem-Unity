@@ -43,6 +43,7 @@ namespace AntiAddictionSystem.iOS
         public event EventHandler<EventArgs> OnLoginHasBeenShown;
         public event EventHandler<EventArgs> OnLoginHasBeenDismissed;
         public event EventHandler<EventArgs> OnLoginFail;
+        public event EventHandler<EventArgs> OnSwitch;
 
         //实名认证回调
         public event EventHandler<EventArgs> OnUserAuthVcHasBeenShown;

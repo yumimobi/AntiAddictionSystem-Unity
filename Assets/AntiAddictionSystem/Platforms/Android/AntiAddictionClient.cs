@@ -17,7 +17,8 @@ namespace AntiAddictionSystem.Android
         public event EventHandler<LoginSuccessEventArgs> OnLoginSuccess = delegate { };
         public event EventHandler<EventArgs> OnLoginHasBeenShown = delegate { };
         public event EventHandler<EventArgs> OnLoginHasBeenDismissed = delegate { };
-        public event EventHandler<EventArgs> OnLoginFail;
+        public event EventHandler<EventArgs> OnLoginFail = delegate { };
+        public event EventHandler<EventArgs> OnSwitch = delegate { };
         public event EventHandler<EventArgs> OnUserAuthVcHasBeenShown = delegate { };
         public event EventHandler<EventArgs> OnUserAuthSuccess = delegate { };
         public event EventHandler<EventArgs> OnWarningHasBeenShown = delegate { };
@@ -162,6 +163,14 @@ namespace AntiAddictionSystem.Android
             if (OnLoginFail != null)
             {
                 OnLoginFail(this, EventArgs.Empty);
+            }
+        }
+
+        void onSwitch()
+        {
+            if (OnSwitch != null)
+            {
+                OnSwitch(this, EventArgs.Empty);
             }
         }
 

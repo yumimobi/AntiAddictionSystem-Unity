@@ -15,6 +15,8 @@ namespace AntiAddictionSystem.Common
         event EventHandler<EventArgs> OnLoginHasBeenShown;
         event EventHandler<EventArgs> OnLoginHasBeenDismissed;
         event EventHandler<EventArgs> OnLoginFail;
+        event EventHandler<EventArgs> OnSwitch;
+
 
         //实名认证回调
         event EventHandler<EventArgs> OnUserAuthVcHasBeenShown;

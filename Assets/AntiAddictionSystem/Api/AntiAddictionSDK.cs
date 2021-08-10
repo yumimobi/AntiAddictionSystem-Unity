@@ -63,6 +63,16 @@ namespace AntiAddictionSystem.Api
                 }
             };
 
+            client.OnSwitch += (sender, args) =>
+            {
+                if (OnSwitch != null)
+                {
+                    OnSwitch(this, args);
+                }
+            };
+
+            
+
             client.OnUserAuthVcHasBeenShown += (sender, args) =>
             {
                 if(OnUserAuthVcHasBeenShown != null)
@@ -161,6 +171,8 @@ namespace AntiAddictionSystem.Api
         public event EventHandler<EventArgs> OnLoginHasBeenDismissed;
         // 登录失败
         public event EventHandler<EventArgs> OnLoginFail;
+        // 切换账号
+        public event EventHandler<EventArgs> OnSwitch;
 
         // 实名认证回调
         // 实名认证界面开始展示
