@@ -1,6 +1,6 @@
 ﻿<dependencies>
   <androidPackages>
-    <androidPackage spec="com.yumimobi.ads.sdk:antiaddiction:1.1.9">
+    <androidPackage spec="com.yumimobi.ads.sdk:antiaddiction:1.2.0">
       <repositories>
         <repository>https://repo1.maven.org/maven2/</repository>
       </repositories>
